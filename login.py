@@ -6,9 +6,19 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+import language
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QMainWindow
 
-class Ui_Form(object):
+
+
+class Login_Form:
+    def __init__(self):
+        self.LANG = 0
+        self.start_window = QMainWindow()
+        self.start_window.move(500, 500)
+        self.setupUi(self.start_window)
+
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)
@@ -21,17 +31,17 @@ class Ui_Form(object):
         self.checkBox = QtWidgets.QCheckBox(Form)
         self.checkBox.setGeometry(QtCore.QRect(140, 200, 97, 22))
         self.checkBox.setObjectName("checkBox")
-        self.textBrowser = QtWidgets.QTextBrowser(Form)
+        self.textBrowser = QtWidgets.QTextEdit(Form)
         self.textBrowser.setGeometry(QtCore.QRect(110, 90, 256, 31))
         self.textBrowser.setObjectName("textBrowser")
-        self.textBrowser_2 = QtWidgets.QTextBrowser(Form)
+        self.textBrowser_2 = QtWidgets.QTextEdit(Form)
         self.textBrowser_2.setGeometry(QtCore.QRect(110, 140, 256, 31))
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(20, 100, 67, 17))
+        self.label.setGeometry(QtCore.QRect(12, 100, 90, 20))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Form)
-        self.label_2.setGeometry(QtCore.QRect(20, 150, 81, 21))
+        self.label_2.setGeometry(QtCore.QRect(12, 150, 90, 20))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Form)
         self.label_3.setGeometry(QtCore.QRect(100, 50, 241, 16))
@@ -51,14 +61,14 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton.setText(_translate("Form", "Show demo"))
-        self.pushButton_2.setText(_translate("Form", "Login"))
-        self.checkBox.setText(_translate("Form", "read-only"))
-        self.label.setText(_translate("Form", "app ID"))
-        self.label_2.setText(_translate("Form", "app Secret"))
-        self.label_3.setText(_translate("Form", "Please, insert app credentials:"))
-        self.pushButton_3.setText(_translate("Form", "Ru"))
-        self.pushButton_4.setText(_translate("Form", "En"))
-        self.label_4.setText(_translate("Form", "Language"))
+        Form.setWindowTitle(_translate("Form", language.word_dict["Login_WindowTitle"][self.LANG]))
+        self.pushButton.setText(_translate("Form", language.word_dict["show_demo_pushButton"][self.LANG]))
+        self.pushButton_2.setText(_translate("Form", language.word_dict["login_button"][self.LANG]))
+        self.checkBox.setText(_translate("Form", language.word_dict["read-only"][self.LANG]))
+        self.label.setText(_translate("Form", language.word_dict["app ID"][self.LANG]))
+        self.label_2.setText(_translate("Form", language.word_dict["app Secret"][self.LANG]))
+        self.label_3.setText(_translate("Form", language.word_dict["app credentials"][self.LANG]))
+        self.pushButton_3.setText(_translate("Form", language.word_dict["lanru"][self.LANG]))
+        self.pushButton_4.setText(_translate("Form", language.word_dict["lanen"][self.LANG]))
+        self.label_4.setText(_translate("Form", language.word_dict["languag"][self.LANG]))
 
