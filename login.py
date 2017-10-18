@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import QMainWindow
 
 class Login_Form:
     def __init__(self):
-        self.LANG = 0
+        self.LANG = 1
         self.start_window = QMainWindow()
         self.start_window.move(500, 500)
         self.setupUi(self.start_window)
@@ -29,12 +29,12 @@ class Login_Form:
         self.pushButton_2.setGeometry(QtCore.QRect(80, 240, 99, 27))
         self.pushButton_2.setObjectName("pushButton_2")
         self.checkBox = QtWidgets.QCheckBox(Form)
-        self.checkBox.setGeometry(QtCore.QRect(140, 200, 97, 22))
+        self.checkBox.setGeometry(QtCore.QRect(140, 200, 120, 22))
         self.checkBox.setObjectName("checkBox")
-        self.textBrowser = QtWidgets.QTextEdit(Form)
+        self.textBrowser = QtWidgets.QLineEdit(Form)
         self.textBrowser.setGeometry(QtCore.QRect(110, 90, 256, 31))
         self.textBrowser.setObjectName("textBrowser")
-        self.textBrowser_2 = QtWidgets.QTextEdit(Form)
+        self.textBrowser_2 = QtWidgets.QLineEdit(Form)
         self.textBrowser_2.setGeometry(QtCore.QRect(110, 140, 256, 31))
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.label = QtWidgets.QLabel(Form)
