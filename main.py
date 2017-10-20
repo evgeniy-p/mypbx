@@ -53,6 +53,8 @@ menu_form.pushButton_6.clicked.connect(menu_form.dialrul_but_clicked)
 menu_form.pushButton_7.clicked.connect(menu_form.fax_but_clicked)
 
 
+
+
 """
 Выход
 """
