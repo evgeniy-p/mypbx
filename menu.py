@@ -1,14 +1,15 @@
-# -*- coding: utf-8 -*-
+import language
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QMainWindow
 
-# Form implementation generated from reading ui file 'menu.ui'
-#
-# Created by: PyQt5 UI code generator 5.5.1
-#
-# WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+class MenuForm:
+    def __init__(self):
+        self.LANG = 1
+        self.menu_window = QMainWindow()
+        self.menu_window.move(600, 300)
+        self.setupUi(self.menu_window)
 
-class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(305, 526)
@@ -57,12 +58,6 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.toolBar = QtWidgets.QToolBar(MainWindow)
-        self.toolBar.setObjectName("toolBar")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
-        self.toolBar_2 = QtWidgets.QToolBar(MainWindow)
-        self.toolBar_2.setObjectName("toolBar_2")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_2)
         self.menubar.addAction(self.menuHumanpbx.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -71,18 +66,31 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Language"))
-        self.pushButton.setText(_translate("MainWindow", "En"))
-        self.pushButton_2.setText(_translate("MainWindow", "Ru"))
-        self.pushButton_3.setText(_translate("MainWindow", "Extensions"))
-        self.pushButton_4.setText(_translate("MainWindow", "Routing (and dids)"))
-        self.pushButton_5.setText(_translate("MainWindow", "CDR and call recordings"))
-        self.pushButton_6.setText(_translate("MainWindow", "Dial Rules"))
-        self.pushButton_7.setText(_translate("MainWindow", "Faxes"))
+        self.label.setText(_translate("MainWindow", language.menu_dict["languag"][self.LANG]))
+        self.pushButton.setText(_translate("MainWindow", "EN"))
+        self.pushButton_2.setText(_translate("MainWindow", "RU"))
+        self.pushButton_3.setText(_translate("MainWindow", language.menu_dict["Extensions"][self.LANG]))
+        self.pushButton_4.setText(_translate("MainWindow", language.menu_dict["Routing"][self.LANG]))
+        self.pushButton_5.setText(_translate("MainWindow", language.menu_dict["CDR"][self.LANG]))
+        self.pushButton_6.setText(_translate("MainWindow", language.menu_dict["DialRul"][self.LANG]))
+        self.pushButton_7.setText(_translate("MainWindow", language.menu_dict["Faxes"][self.LANG]))
         self.pushButton_8.setText(_translate("MainWindow", "PushButton"))
         self.pushButton_9.setText(_translate("MainWindow", "PushButton"))
         self.pushButton_10.setText(_translate("MainWindow", "PushButton"))
-        self.menuHumanpbx.setTitle(_translate("MainWindow", "humanpbx"))
-        self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
-        self.toolBar_2.setWindowTitle(_translate("MainWindow", "toolBar_2"))
+        self.menuHumanpbx.setTitle(_translate("MainWindow", language.menu_dict["uptitle"][self.LANG]))
+
+    def extension_but_clicked(self):
+        print('Extensions')
+
+    def routing_but_clicked(self):
+        print('routing')
+
+    def cdr_but_clicked(self):
+        print('cdr')
+
+    def dialrul_but_clicked(self):
+        print('dialrul')
+
+    def fax_but_clicked(self):
+        print('fax')
 
