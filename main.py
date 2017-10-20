@@ -51,8 +51,6 @@ menu_form.pushButton_4.clicked.connect(menu_form.routing_but_clicked)
 menu_form.pushButton_5.clicked.connect(menu_form.cdr_but_clicked)
 menu_form.pushButton_6.clicked.connect(menu_form.dialrul_but_clicked)
 menu_form.pushButton_7.clicked.connect(menu_form.fax_but_clicked)
-
-
 """
 Выход
 """
