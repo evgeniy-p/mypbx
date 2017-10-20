@@ -1,22 +1,21 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'login.ui'
-#
-# Created by: PyQt5 UI code generator 5.5.1
-#
-# WARNING! All changes made in this file will be lost!
-
 import language
+import gettoken
+import myexception
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 
 
+"""
+TODO
+login_but_clicked -> checkBox.checkState -> read-only....
+"""
 
-class Login_Form:
+
+class LoginForm:
     def __init__(self):
         self.LANG = 1
         self.start_window = QMainWindow()
-        self.start_window.move(500, 500)
+        self.start_window.move(300, 300)
         self.setupUi(self.start_window)
 
     def setupUi(self, Form):
@@ -61,14 +60,21 @@ class Login_Form:
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", language.word_dict["Login_WindowTitle"][self.LANG]))
-        self.pushButton.setText(_translate("Form", language.word_dict["show_demo_pushButton"][self.LANG]))
-        self.pushButton_2.setText(_translate("Form", language.word_dict["login_button"][self.LANG]))
-        self.checkBox.setText(_translate("Form", language.word_dict["read-only"][self.LANG]))
-        self.label.setText(_translate("Form", language.word_dict["app ID"][self.LANG]))
-        self.label_2.setText(_translate("Form", language.word_dict["app Secret"][self.LANG]))
-        self.label_3.setText(_translate("Form", language.word_dict["app credentials"][self.LANG]))
-        self.pushButton_3.setText(_translate("Form", language.word_dict["lanru"][self.LANG]))
-        self.pushButton_4.setText(_translate("Form", language.word_dict["lanen"][self.LANG]))
-        self.label_4.setText(_translate("Form", language.word_dict["languag"][self.LANG]))
+        Form.setWindowTitle(_translate("Form", language.login_dict["Login_WindowTitle"][self.LANG]))
+        self.pushButton.setText(_translate("Form", language.login_dict["show_demo_pushButton"][self.LANG]))
+        self.pushButton_2.setText(_translate("Form", language.login_dict["login_button"][self.LANG]))
+        self.checkBox.setText(_translate("Form", language.login_dict["read-only"][self.LANG]))
+        self.label.setText(_translate("Form", language.login_dict["app ID"][self.LANG]))
+        self.label_2.setText(_translate("Form", language.login_dict["app Secret"][self.LANG]))
+        self.label_3.setText(_translate("Form", language.login_dict["app credentials"][self.LANG]))
+        self.pushButton_3.setText(_translate("Form", "RU"))
+        self.pushButton_4.setText(_translate("Form", "EN"))
+        self.label_4.setText(_translate("Form", language.login_dict["languag"][self.LANG]))
 
+    def login_but_clicked(self):
+        program_token = gettoken.Token(self.textBrowser.text(), self.textBrowser_2.text())
+        try:
+            print(program_token.get_token())
+        except myexception.cant_get_OK_check_appid_and_secret:
+                print('not ok. bro')
+        print(self.checkBox.checkState())

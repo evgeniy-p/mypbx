@@ -1,5 +1,4 @@
 import requests
-import conf
 import json
 import myexception
 from time import time
