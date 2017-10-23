@@ -7,7 +7,11 @@ login_dict = {
     "app ID": ["app ID", "ID приложения"],
     "app Secret": ["app Secret", "Секретный ключ"],
     "languag": ["Language", "Язык"],
-    "app credentials": ["Please, insert app credentials:", "Пожалуйста, введите данные приложения:"]
+    "app credentials": ["Please, insert app credentials:", "Пожалуйста, введите данные приложения:"],
+    "login wartning": ['Login incorrect', 'Указаны некорректные данные!'],
+    "app credentials wrong": ["Please, check your credentials.\nCredentials are wrong",
+                              "Введенные данные не корректны!\nПроверьте введенные данные!"],
+    "error frame name": ['WARNING!!!', 'ВНИМАНИЕ!!!']
 }
 
 menu_dict = {
@@ -16,7 +20,9 @@ menu_dict = {
     "Routing": ["Routing and numbers (DIDs)", "Маршрутизация и Номера (DIDs)"],
     "CDR": ["CDR and call recordings", "Статистика и записи разговоров"],
     "DialRul": ["Dial Rules", "Правила набора"],
-    "Faxes": ["Faxes", "Факсы"],
+    "Faxes": ["Faxes and voicemails", "Факсы и голосовая почта"],
     "languag": login_dict["languag"],
-    "uptitle": ["NONE", "NONE"]
+    "uptitle": ["NONE", "NONE"],
+    "Settings": ['Settings', 'Настройки']
+
 }

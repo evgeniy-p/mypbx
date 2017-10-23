@@ -17,6 +17,7 @@ class LoginForm:
         self.start_window = QMainWindow()
         self.start_window.move(300, 300)
         self.setupUi(self.start_window)
+        self.start_main_menu = None
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -54,7 +55,11 @@ class LoginForm:
         self.label_4 = QtWidgets.QLabel(Form)
         self.label_4.setGeometry(QtCore.QRect(240, 10, 67, 17))
         self.label_4.setObjectName("label_4")
-
+        self.errormessage = QtWidgets.QMessageBox()
+        self.errormessage.setGeometry(QtCore.QRect(400, 600, 305, 25))
+        self.errormessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        self.errormessage.setDefaultButton(QtWidgets.QMessageBox.Ok)
+        self.errormessage.setEscapeButton(QtWidgets.QMessageBox.Ok)
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -70,11 +75,17 @@ class LoginForm:
         self.pushButton_3.setText(_translate("Form", "RU"))
         self.pushButton_4.setText(_translate("Form", "EN"))
         self.label_4.setText(_translate("Form", language.login_dict["languag"][self.LANG]))
+        self.errormessage.setWindowTitle(language.login_dict["error frame name"][self.LANG])
 
     def login_but_clicked(self):
         program_token = gettoken.Token(self.textBrowser.text(), self.textBrowser_2.text())
         try:
-            print(program_token.get_token())
+            program_token.get_token()
         except myexception.cant_get_OK_check_appid_and_secret:
-                print('not ok. bro')
-        print(self.checkBox.checkState())
+            self.errormessage.setText(language.login_dict['login wartning'][self.LANG])
+            self.errormessage.setDetailedText(language.login_dict["app credentials wrong"][self.LANG])
+            self.errormessage.show()
+        else:
+            self.start_main_menu.show()
+            self.start_window.close()
+            print(self.checkBox.checkState())
