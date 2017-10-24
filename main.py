@@ -9,6 +9,7 @@ def set_lang(pref):
     menu_form.LANG = pref
     login_form.retranslateUi(login_form.start_window)
     menu_form.retranslateUi(menu_form.menu_window)
+    menu_form.retranslate_user_info()
 
 
 def set_ru_lang():
@@ -28,7 +29,7 @@ login_form.start_window.show()
 """
 Инициализация формы меню
 """
-menu_form = menu.MenuForm()
+menu_form = menu.MenuForm(login_form)
 login_form.start_main_menu = menu_form.menu_window
 """
 Нажатие кнопок в форме логина 
@@ -36,11 +37,13 @@ login_form.start_main_menu = menu_form.menu_window
 login_form.pushButton_2.clicked.connect(login_form.login_but_clicked)
 login_form.pushButton_3.clicked.connect(set_ru_lang)
 login_form.pushButton_4.clicked.connect(set_en_lang)
+
 """
 Нажатие кнопок в меню 
 """
 menu_form.pushButton.clicked.connect(set_en_lang)
 menu_form.pushButton_2.clicked.connect(set_ru_lang)
+login_form.pushButton_2.clicked.connect(menu_form.retranslate_user_info)
 menu_form.pushButton_3.clicked.connect(menu_form.extension_but_clicked)
 menu_form.pushButton_4.clicked.connect(menu_form.routing_but_clicked)
 menu_form.pushButton_5.clicked.connect(menu_form.cdr_but_clicked)

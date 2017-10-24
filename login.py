@@ -1,9 +1,8 @@
 import language
-import gettoken
 import myexception
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
-
+import gettoken
 
 """
 TODO
@@ -11,8 +10,9 @@ login_but_clicked -> checkBox.checkState -> read-only....
 """
 
 
-class LoginForm:
+class LoginForm(gettoken.Token):
     def __init__(self):
+        gettoken.Token.__init__(self)
         self.LANG = 1
         self.start_window = QMainWindow()
         self.start_window.move(300, 300)
@@ -32,16 +32,16 @@ class LoginForm:
         self.checkBox.setGeometry(QtCore.QRect(140, 200, 150, 22))
         self.checkBox.setObjectName("checkBox")
         self.textBrowser = QtWidgets.QLineEdit(Form)
-        self.textBrowser.setGeometry(QtCore.QRect(135, 90, 256, 31))
+        self.textBrowser.setGeometry(QtCore.QRect(100, 90, 256, 31))
         self.textBrowser.setObjectName("textBrowser")
         self.textBrowser_2 = QtWidgets.QLineEdit(Form)
-        self.textBrowser_2.setGeometry(QtCore.QRect(135, 140, 256, 31))
+        self.textBrowser_2.setGeometry(QtCore.QRect(100, 140, 256, 31))
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(12, 100, 130, 20))
+        self.label.setGeometry(QtCore.QRect(20, 100, 130, 20))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Form)
-        self.label_2.setGeometry(QtCore.QRect(12, 150, 130, 20))
+        self.label_2.setGeometry(QtCore.QRect(20, 150, 130, 20))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Form)
         self.label_3.setGeometry(QtCore.QRect(80, 50, 300, 16))
@@ -78,11 +78,10 @@ class LoginForm:
         self.errormessage.setWindowTitle(language.login_dict["error frame name"][self.LANG])
 
     def login_but_clicked(self):
-        program_token = gettoken.Token(self.textBrowser.text(), self.textBrowser_2.text())
         try:
-            program_token.get_token()
-        except myexception.cant_get_OK_check_appid_and_secret:
-            self.errormessage.setText(language.login_dict['login wartning'][self.LANG])
+            self.get_token(self.textBrowser.text(), self.textBrowser_2.text())
+        except myexception.cant_get_OK_check_login_and_password:
+            self.errormessage.setText(language.login_dict['login warning'][self.LANG])
             self.errormessage.setDetailedText(language.login_dict["app credentials wrong"][self.LANG])
             self.errormessage.show()
         else:

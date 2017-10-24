@@ -1,29 +1,44 @@
 import requests
 import json
 import gettoken
+import myexception
 
-"""
-id = id
-
-secret = secret
-
-"""
 
 class Exten:
     def __init__(self):
-        self.tokenreturn = gettoken.Token('id', 'secret')
+        self.extbody = {
+            "caller_id_name": None,
+            "dial_rule_limit": 0,
+            "did_as_transfer_caller_id": None,
+            "extension_group_id": 0,
+            "extra_params": None,
+            "from_public_caller_id_number": True,
+            "label": None,
+            "name": None,
+            "public_caller_id_number": None,
+            "rfc_public_caller_id_number": True,
+            "status": "active",
+            "type": "phone"
+        }
+
+
 
     def all_extensions(self):
+
         pass
 
-    def take_auth_header(self):
-        return {'Authorization': 'Bearer {token}'.format(token=self.tokenreturn.get_token())}
 
     def get_all_extensions(self):
         pass
 
-    def add_extension(self):
-        pass
+    def add_extension(self, name=None):
+        if not name:
+            raise myexception.extension_name_must_be_set
+        else:
+            self.extbody['name'] = name
+        answer = requests.post('https://apiproxy.telphin.ru/api/ver1.0/client/{client_id}/extension/',
+                               headers=gettoken.take_auth_header(), data=self.extbody)
+        return json.loads(answer.content)
 
     def del_extension(self):
         pass
@@ -57,6 +72,7 @@ class Exten:
 
 if __name__ == "__main__":
     check = Exten()
+    print(check.add_extension('001'))
     print(json.loads(check.get_registrations().content))
 
 

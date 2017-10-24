@@ -4,18 +4,18 @@ login_dict = {
     "show_demo_pushButton": ["Show demo", "Демо"],
     "login_button": ["Login", "Войти"],
     "read-only": ["read-only", "только просмотр"],
-    "app ID": ["app ID", "ID приложения"],
-    "app Secret": ["app Secret", "Секретный ключ"],
+    "app ID": ["Login", "Логин"],
+    "app Secret": ["Password", "Пароль"],
     "languag": ["Language", "Язык"],
-    "app credentials": ["Please, insert app credentials:", "Пожалуйста, введите данные приложения:"],
-    "login wartning": ['Login incorrect', 'Указаны некорректные данные!'],
+    "app credentials": ["Please, insert your credentials:", "Пожалуйста, введите ваши данные:"],
+    "login warning": ['Login incorrect', 'Указаны некорректные данные!'],
     "app credentials wrong": ["Please, check your credentials.\nCredentials are wrong",
                               "Введенные данные не корректны!\nПроверьте введенные данные!"],
     "error frame name": ['WARNING!!!', 'ВНИМАНИЕ!!!']
 }
 
 menu_dict = {
-    "Menu_WindowTitle": login_dict["Login_WindowTitle"],
+    "Menu_WindowTitle": ["PBX functions and settings menu", "Меню функций и настроек АТС"],
     "Extensions": ["Extensions (SIP ID)", "Добавочные (SIP ID)"],
     "Routing": ["Routing and numbers (DIDs)", "Маршрутизация и Номера (DIDs)"],
     "CDR": ["CDR and call recordings", "Статистика и записи разговоров"],
@@ -23,6 +23,8 @@ menu_dict = {
     "Faxes": ["Faxes and voicemails", "Факсы и голосовая почта"],
     "languag": login_dict["languag"],
     "uptitle": ["NONE", "NONE"],
-    "Settings": ['Settings', 'Настройки']
-
+    "Settings": ['Settings', 'Настройки'],
+    "Hello": ['Hello, ', 'Здравствуйте, '],
+    "domain": ['Your domain: ', 'Ваш домен: '],
+    'prefix': ['Your SIP ID prefix: ', 'Ваш SIP ID c префиксом: ']
 }

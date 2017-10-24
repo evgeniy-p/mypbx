@@ -1,2 +1,8 @@
-class cant_get_OK_check_appid_and_secret(Exception):
+class cant_get_OK_check_login_and_password(Exception):
+    pass
+
+class cant_get_OK_need_recconect(Exception):
+    pass
+
+class extension_name_must_be_set(Exception):
     pass
