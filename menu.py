@@ -24,10 +24,10 @@ class MenuForm:
         self.label1.setGeometry(QtCore.QRect(10, 10, 300, 31))
         self.label1.setObjectName("label1")
         self.label2 = QtWidgets.QTextBrowser(self.centralwidget)
-        self.label2.setGeometry(QtCore.QRect(10, 40, 300, 31))
+        self.label2.setGeometry(QtCore.QRect(10, 45, 300, 31))
         self.label2.setObjectName("label2")
         self.label3 = QtWidgets.QTextBrowser(self.centralwidget)
-        self.label3.setGeometry(QtCore.QRect(10, 70, 300, 31))
+        self.label3.setGeometry(QtCore.QRect(10, 80, 300, 31))
         self.label3.setObjectName("label3")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(230, 480, 31, 31))
@@ -112,6 +112,8 @@ class MenuForm:
                                            clientinfo.clientinfo['domain']))
             self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG] +
                                            clientinfo.clientinfo['prefix'] + '*'))
-
+    def show_demo(self):
+        self.menu_window.show()
+        self.classwithtoken.start_window.close()
 
 

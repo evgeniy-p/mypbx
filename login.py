@@ -11,8 +11,9 @@ login_but_clicked -> checkBox.checkState -> read-only....
 
 
 class LoginForm(gettoken.Token):
-    def __init__(self):
+    def __init__(self, log):
         gettoken.Token.__init__(self)
+        self.log = log
         self.LANG = 1
         self.start_window = QMainWindow()
         self.start_window.move(300, 300)
@@ -38,10 +39,10 @@ class LoginForm(gettoken.Token):
         self.textBrowser_2.setGeometry(QtCore.QRect(100, 140, 256, 31))
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(20, 100, 130, 20))
+        self.label.setGeometry(QtCore.QRect(20, 100, 80, 20))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Form)
-        self.label_2.setGeometry(QtCore.QRect(20, 150, 130, 20))
+        self.label_2.setGeometry(QtCore.QRect(20, 150, 80, 20))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Form)
         self.label_3.setGeometry(QtCore.QRect(80, 50, 300, 16))
@@ -81,6 +82,7 @@ class LoginForm(gettoken.Token):
         try:
             self.get_token(self.textBrowser.text(), self.textBrowser_2.text())
         except myexception.cant_get_OK_check_login_and_password:
+            self.log.warning("cant_get_OK_check_login_and_password")
             self.errormessage.setText(language.login_dict['login warning'][self.LANG])
             self.errormessage.setDetailedText(language.login_dict["app credentials wrong"][self.LANG])
             self.errormessage.show()
