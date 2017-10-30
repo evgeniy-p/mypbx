@@ -3,7 +3,6 @@ login_dict = {
     "Login_WindowTitle": ['PBX login screen', 'Вход в интерфейс управления АТС'],
     "show_demo_pushButton": ["Show demo", "Демо"],
     "login_button": ["Login", "Войти"],
-    "read-only": ["read-only", "только просмотр"],
     "app ID": ["Login", "Логин"],
     "app Secret": ["Password", "Пароль"],
     "languag": ["Language", "Язык"],

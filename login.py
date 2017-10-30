@@ -4,11 +4,6 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 import gettoken
 
-"""
-TODO
-login_but_clicked -> checkBox.checkState -> read-only....
-"""
-
 
 class LoginForm(gettoken.Token):
     def __init__(self, log):
@@ -29,9 +24,6 @@ class LoginForm(gettoken.Token):
         self.pushButton_2 = QtWidgets.QPushButton(Form)
         self.pushButton_2.setGeometry(QtCore.QRect(80, 240, 99, 27))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.checkBox = QtWidgets.QCheckBox(Form)
-        self.checkBox.setGeometry(QtCore.QRect(140, 200, 150, 22))
-        self.checkBox.setObjectName("checkBox")
         self.textBrowser = QtWidgets.QLineEdit(Form)
         self.textBrowser.setGeometry(QtCore.QRect(100, 90, 256, 31))
         self.textBrowser.setObjectName("textBrowser")
@@ -69,7 +61,6 @@ class LoginForm(gettoken.Token):
         Form.setWindowTitle(_translate("Form", language.login_dict["Login_WindowTitle"][self.LANG]))
         self.pushButton.setText(_translate("Form", language.login_dict["show_demo_pushButton"][self.LANG]))
         self.pushButton_2.setText(_translate("Form", language.login_dict["login_button"][self.LANG]))
-        self.checkBox.setText(_translate("Form", language.login_dict["read-only"][self.LANG]))
         self.label.setText(_translate("Form", language.login_dict["app ID"][self.LANG]))
         self.label_2.setText(_translate("Form", language.login_dict["app Secret"][self.LANG]))
         self.label_3.setText(_translate("Form", language.login_dict["app credentials"][self.LANG]))
@@ -89,4 +80,3 @@ class LoginForm(gettoken.Token):
         else:
             self.start_main_menu.show()
             self.start_window.close()
-            print(self.checkBox.checkState())
