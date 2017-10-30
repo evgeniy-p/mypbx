@@ -33,7 +33,7 @@ QToolTip
 QWidget
 {
     color: #eff0f1;
-    background-color: #31363b;
+    background-color: #fff;
     selection-background-color:#3daee9;
     selection-color: #eff0f1;
     background-clip: border;
@@ -738,6 +738,7 @@ QAbstractSpinBox::down-arrow:hover
 
 QLabel
 {
+    color: #000;
     border: 0px solid black;
 }
 

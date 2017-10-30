@@ -5,7 +5,7 @@ login_dict = {
     "login_button": ["Login", "Войти"],
     "app ID": ["Login", "Логин"],
     "app Secret": ["Password", "Пароль"],
-    "languag": ["Language", "Язык"],
+    "languag": ["Lang", "Язык"],
     "app credentials": ["Please, insert your credentials:", "Пожалуйста, введите ваши данные:"],
     "login warning": ['Login incorrect', 'Указаны некорректные данные!'],
     "app credentials wrong": ["Please, check your credentials.\nCredentials are wrong",
