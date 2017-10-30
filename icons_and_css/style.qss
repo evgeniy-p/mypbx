@@ -79,7 +79,7 @@ QGroupBox::indicator
 
 QCheckBox::indicator:unchecked
 {
-    image: url(:/checkbox_unchecked.png);
+    image: url(:checkbox_unchecked.png);
 }
 
 QCheckBox::indicator:unchecked:hover,
@@ -799,7 +799,7 @@ QTabBar::tab:top:!selected
     border: 1px solid #76797C;
     border-bottom: 1px transparent black;
     border-top-left-radius: 2px;
-    border-top-right-radius: 2px;    
+    border-top-right-radius: 2px;
 }
 
 QTabBar::tab:top:!selected:hover {

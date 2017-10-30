@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QFile, QTextStream
+import icons_and_css.pyqt5_style_rc
 import login
 import menu
 import sys
@@ -24,8 +26,9 @@ def set_en_lang():
 
 
 app = QApplication(sys.argv)
-qss_file = open('./icons_and_css/style.qss').read()
-app.setStyleSheet(qss_file)
+qss_file = QFile('./icons_and_css/style.qss')
+qss_file.open(QFile.ReadOnly | QFile.Text)
+app.setStyleSheet(QTextStream(qss_file).readAll())
 """
 Инициализация формы логина
 """
