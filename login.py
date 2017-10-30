@@ -24,7 +24,7 @@ class LoginForm(gettoken.Token):
         Form.setObjectName("Form")
         Form.resize(400, 300)
         self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(9, 10, 381, 280))
+        self.widget.setGeometry(QtCore.QRect(0, 0, 400, 300))
         self.widget.setObjectName("widget")
         self.pushButton = QtWidgets.QPushButton(self.widget)
         self.pushButton.setGeometry(QtCore.QRect(200, 240, 99, 27))
