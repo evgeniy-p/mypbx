@@ -9,6 +9,7 @@ class Token:
     def __init__(self):
         self.apID = conf.APPID
         self.apSecret = conf.SECRET
+        self.redirect_uri = conf.URI
         self.token = None
         self.tokentime = None
 
@@ -27,8 +28,16 @@ class Token:
         return {'Authorization': 'Bearer {token}'.format(token=self.get_token())}
 
     def new_token(self, username, password):
-        payload = {'grant_type': 'password', 'client_id': self.apID, 'client_secret': self.apSecret,
-                   'username': username, 'password': password}
+        payload = {"username": username, "password": password}
+        with requests.Session() as req:
+            answer = req.post('https://apiproxy.telphin.ru/oauth/authorize', params=
+            {'response_type': 'code', 'redirect_uri': self.redirect_uri, 'client_id': self.apID, 'scope': 'all'},
+                              allow_redirects=False)
+            answer = req.post(answer.headers['Location'], data=payload, allow_redirects=False)
+            answer = req.get(answer.headers['Location'], cookies=req.cookies, allow_redirects=False)
+
+        payload = {'grant_type': 'authorization_code', 'code': answer.headers['Location'].split('=')[1],
+                   'client_id': self.apID, 'client_secret': self.apSecret, 'redirect_uri': self.redirect_uri}
         resouath = requests.post('https://apiproxy.telphin.ru/oauth/token', data=payload)
         if not resouath.ok:
             raise myexception.cant_get_OK_check_login_and_password

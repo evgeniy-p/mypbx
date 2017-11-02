@@ -25,5 +25,5 @@ menu_dict = {
     "Settings": ['Settings', 'Настройки'],
     "Hello": ['Hello, ', 'Здравствуйте, '],
     "domain": ['Your domain: ', 'Ваш домен: '],
-    'prefix': ['Your SIP ID prefix: ', 'Ваш SIP ID c префиксом: ']
+    'prefix': ['Your SIP ID prefix: ', 'Ваш SIP ID всегда начинается с ']
 }

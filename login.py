@@ -1,7 +1,5 @@
 import language
 import myexception
-from PyQt5.QtCore import QFile, QTextStream
-import icons_and_css.pyqt5_style_rc
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 import gettoken
@@ -16,9 +14,7 @@ class LoginForm(gettoken.Token):
         self.start_window.move(300, 300)
         self.setupUi(self.start_window)
         self.start_main_menu = None
-        qss_file = QFile('./icons_and_css/login.qss')
-        qss_file.open(QFile.ReadOnly | QFile.Text)
-        self.start_window.setStyleSheet(QTextStream(qss_file).readAll())
+
 
     def setupUi(self, Form):
         Form.setObjectName("Form")

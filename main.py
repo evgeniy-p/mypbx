@@ -1,4 +1,7 @@
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QFile, QTextStream
+import icons_and_css.pyqt5_style_rc
+import extensions_qt
 import login
 import menu
 import sys
@@ -30,11 +33,20 @@ app = QApplication(sys.argv)
 """
 login_form = login.LoginForm(logging)
 login_form.start_window.show()
+qss_file = QFile('./icons_and_css/main.qss')
+qss_file.open(QFile.ReadOnly | QFile.Text)
+app.setStyleSheet(QTextStream(qss_file).readAll())
 """
 Инициализация формы меню
 """
 menu_form = menu.MenuForm(login_form)
 login_form.start_main_menu = menu_form.menu_window
+"""
+Инициализация формы добавочных
+"""
+ext_form = extensions_qt.QTExtension(menu_form)
+menu_form.start_ext_menu = ext_form.ext_menu_window
+
 """
 Нажатие кнопок в форме логина 
 """

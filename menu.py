@@ -9,8 +9,9 @@ class MenuForm:
         self.classwithtoken = classwithtoken
         self.LANG = 1
         self.menu_window = QMainWindow()
-        self.menu_window.move(600, 300)
+        self.menu_window.move(300, 300)
         self.setupUi(self.menu_window)
+        self.start_ext_menu = None
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -18,7 +19,7 @@ class MenuForm:
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(150, 486, 67, 17))
+        self.label.setGeometry(QtCore.QRect(175, 486, 67, 17))
         self.label.setObjectName("label")
         self.label1 = QtWidgets.QTextBrowser(self.centralwidget)
         self.label1.setGeometry(QtCore.QRect(10, 10, 300, 31))
@@ -88,7 +89,7 @@ class MenuForm:
         self.setting_menu.addAction('WHATEVERWEWANTWEWUDNTWHYSODANGEROUS')
 
     def extension_but_clicked(self):
-        print('Extensions')
+        self.start_ext_menu.show()
 
     def routing_but_clicked(self):
         print('routing')
