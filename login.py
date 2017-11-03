@@ -12,6 +12,8 @@ class LoginForm(gettoken.Token):
         self.LANG = 1
         self.start_window = QMainWindow()
         self.start_window.move(300, 300)
+        self.start_window.setFixedWidth(400)
+        self.start_window.setFixedHeight(300)
         self.setupUi(self.start_window)
         self.start_main_menu = None
 

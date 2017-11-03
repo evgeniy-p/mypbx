@@ -10,6 +10,8 @@ class MenuForm:
         self.LANG = 1
         self.menu_window = QMainWindow()
         self.menu_window.move(300, 300)
+        self.menu_window.setFixedWidth(320)
+        self.menu_window.setFixedHeight(526)
         self.setupUi(self.menu_window)
         self.start_ext_menu = None
 
@@ -86,7 +88,7 @@ class MenuForm:
         self.setting_menu.addSeparator()
         self.setting_menu.addAction('EMAIL')
         self.setting_menu.addSeparator()
-        self.setting_menu.addAction('WHATEVERWEWANTWEWUDNTWHYSODANGEROUS')
+        self.setting_menu.addAction('123123123123123123')
 
     def extension_but_clicked(self):
         self.start_ext_menu.show()
