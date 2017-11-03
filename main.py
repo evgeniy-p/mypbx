@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QFile, QTextStream
 import icons_and_css.pyqt5_style_rc
-import extensions_qt
+import extensions_qt_test
 import login
 import menu
 import sys
@@ -15,6 +15,7 @@ def set_lang(pref):
     menu_form.LANG = pref
     login_form.retranslateUi(login_form.start_window)
     menu_form.retranslateUi(menu_form.menu_window)
+    menu_form.start_ext_menu.close()
     menu_form.retranslate_user_info()
 
 
@@ -44,7 +45,7 @@ login_form.start_main_menu = menu_form.menu_window
 """
 Инициализация формы добавочных
 """
-ext_form = extensions_qt.QTExtension(menu_form)
+ext_form = extensions_qt_test.QTExtension(menu_form)
 menu_form.start_ext_menu = ext_form.ext_menu_window
 
 """
