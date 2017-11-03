@@ -36,8 +36,11 @@ class Token:
             answer = req.post(answer.headers['Location'], data=payload, allow_redirects=False)
             answer = req.get(answer.headers['Location'], cookies=req.cookies, allow_redirects=False)
 
-        payload = {'grant_type': 'authorization_code', 'code': answer.headers['Location'].split('=')[1],
-                   'client_id': self.apID, 'client_secret': self.apSecret, 'redirect_uri': self.redirect_uri}
+        try:
+            payload = {'grant_type': 'authorization_code', 'code': answer.headers['Location'].split('=')[1],
+                       'client_id': self.apID, 'client_secret': self.apSecret, 'redirect_uri': self.redirect_uri}
+        except BaseException:
+            raise myexception.cant_get_OK_check_login_and_password
         resouath = requests.post('https://apiproxy.telphin.ru/oauth/token', data=payload)
         if not resouath.ok:
             raise myexception.cant_get_OK_check_login_and_password
