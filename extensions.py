@@ -1,11 +1,12 @@
 import requests
 import json
-import gettoken
 import myexception
 
+host = 'https://apiproxy.telphin.ru/api/ver1.0'
 
 class Exten:
-    def __init__(self):
+    def __init__(self, menuform):
+        self.menuform = menuform
         self.extbody = {
             "caller_id_name": None,
             "dial_rule_limit": 0,
@@ -21,23 +22,18 @@ class Exten:
             "type": "phone"
         }
 
+    def get_all_extensions(self, type=None):
+        answ= requests.get(host+'/client/{client_id}/extension/'.format(client_id=self.menuform.clientinfo.clientinfo['id']),
+                            headers=self.menuform.loginform.take_auth_header(), data=self.extbody)
 
-
-    def all_extensions(self):
-
-        pass
-
-
-    def get_all_extensions(self):
-        pass
-
+        return json.loads(answ.content)
     def add_extension(self, name=None):
         if not name:
             raise myexception.extension_name_must_be_set
         else:
             self.extbody['name'] = name
         answer = requests.post('https://apiproxy.telphin.ru/api/ver1.0/client/{client_id}/extension/',
-                               headers=gettoken.take_auth_header(), data=self.extbody)
+                               headers=self.menuform.loginform.take_auth_header(), data=self.extbody)
         return json.loads(answer.content)
 
     def del_extension(self):
@@ -66,14 +62,8 @@ class Exten:
 
     def get_registrations(self):
         answer = requests.get('https://apiproxy.telphin.ru/api/ver1.0/extension/registration',
-                               headers=self.take_auth_header())
+                               headers=self.menuform.loginform.take_auth_header())
         return answer
-
-
-if __name__ == "__main__":
-    check = Exten()
-    print(check.add_extension('001'))
-    print(json.loads(check.get_registrations().content))
 
 
 

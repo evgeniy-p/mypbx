@@ -10,7 +10,8 @@ login_dict = {
     "login warning": ['Login incorrect', 'Указаны некорректные данные!'],
     "app credentials wrong": ["Please, check your credentials.\nCredentials are wrong",
                               "Введенные данные не корректны!\nПроверьте введенные данные!"],
-    "error frame name": ['WARNING!!!', 'ВНИМАНИЕ!!!']
+    "error frame name": ['WARNING!!!', 'ВНИМАНИЕ!!!'],
+    "no credentials": ["Please, check your credentials!", "Введенные данные не корректны!"]
 }
 
 menu_dict = {

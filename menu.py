@@ -1,12 +1,13 @@
 import language
 import client_info
+import extensions
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 
 
 class MenuForm:
-    def __init__(self, classwithtoken):
-        self.classwithtoken = classwithtoken
+    def __init__(self, loginform):
+        self.loginform = loginform
         self.LANG = 1
         self.menu_window = QMainWindow()
         self.menu_window.move(300, 300)
@@ -91,7 +92,12 @@ class MenuForm:
         self.setting_menu.addAction('123123123123123123')
 
     def extension_but_clicked(self):
+        if self.loginform.token:
+            self.exten_class = extensions.Exten(self)
+
+    def extension_but_clicked_show_window(self):
         self.start_ext_menu.show()
+
 
     def routing_but_clicked(self):
         print('routing')
@@ -106,17 +112,19 @@ class MenuForm:
         print('fax')
 
     def retranslate_user_info(self):
-        if self.classwithtoken.token:
-            clientinfo = client_info.Client(self.classwithtoken)
+        if self.loginform.token:
+            self.clientinfo = client_info.Client(self.loginform)
             _translate = QtCore.QCoreApplication.translate
             self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG] +
-                                           clientinfo.user_name['name']))
+                                           self.clientinfo.user_name['name']))
             self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG] +
-                                           clientinfo.clientinfo['domain']))
+                                           self.clientinfo.clientinfo['domain']))
             self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG] +
-                                           clientinfo.clientinfo['prefix'] + '*'))
+                                           self.clientinfo.clientinfo['prefix'] + '*'))
+
+
     def show_demo(self):
         self.menu_window.show()
-        self.classwithtoken.start_window.close()
+        self.loginform.start_window.close()
 
 

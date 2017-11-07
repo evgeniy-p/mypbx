@@ -75,14 +75,22 @@ class LoginForm(gettoken.Token):
         self.label_4.setText(_translate("Form", language.login_dict["languag"][self.LANG]))
         self.errormessage.setWindowTitle(language.login_dict["error frame name"][self.LANG])
 
-    def login_but_clicked(self):
-        try:
-            self.get_token(self.textBrowser.text(), self.textBrowser_2.text())
-        except myexception.cant_get_OK_check_login_and_password:
+    def login_button_clicked(self):
+        if self.textBrowser.text() and self.textBrowser_2.text():
+            try:
+                self.get_token(self.textBrowser.text(), self.textBrowser_2.text())
+            except myexception.cant_get_OK_check_login_and_password:
+                self.log.warning("cant_get_OK_check_login_and_password")
+                self.errormessage.setText(language.login_dict['login warning'][self.LANG])
+                self.errormessage.setDetailedText(language.login_dict["app credentials wrong"][self.LANG])
+                self.errormessage.show()
+            else:
+                self.start_main_menu.show()
+                self.start_window.close()
+        else:
             self.log.warning("cant_get_OK_check_login_and_password")
             self.errormessage.setText(language.login_dict['login warning'][self.LANG])
-            self.errormessage.setDetailedText(language.login_dict["app credentials wrong"][self.LANG])
+            self.errormessage.setDetailedText(language.login_dict["no credentials"][self.LANG])
             self.errormessage.show()
-        else:
-            self.start_main_menu.show()
-            self.start_window.close()
+
+
