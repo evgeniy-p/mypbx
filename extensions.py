@@ -22,11 +22,15 @@ class Exten:
             "type": "phone"
         }
 
-    def get_all_extensions(self, type=None):
+    def get_all_extensions(self, **kwargs):
+        payload = kwargs
+        print(payload)
         answ= requests.get(host+'/client/{client_id}/extension/'.format(client_id=self.menuform.clientinfo.clientinfo['id']),
-                            headers=self.menuform.loginform.take_auth_header(), data=self.extbody)
+                            headers=self.menuform.loginform.take_auth_header(), params=payload)
+        print(answ.content)
 
         return json.loads(answ.content)
+
     def add_extension(self, name=None):
         if not name:
             raise myexception.extension_name_must_be_set

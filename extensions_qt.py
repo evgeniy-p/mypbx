@@ -74,7 +74,7 @@ class QTExtension:
     def setupUi(self):
         if self.menuform.loginform.token:
             self.tubs_num = range(1)
-            self.exten_list = self.menuform.exten_class.get_all_extensions()
+            self.exten_list = self.menuform.exten_class.get_all_extensions(**{'type': 'phone'})
         self.ext_menu_window.setObjectName("self.ext_menu_window")
         self.ext_menu_window.resize(607, 600)
         """
