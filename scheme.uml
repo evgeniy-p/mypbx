@@ -1,0 +1,12 @@
+@startuml
+class main{
+}
+main --> LoginForm
+main --> MenuForm
+main --> QTExtension
+Token --> LoginForm
+ClientInfo --> MenuForm
+LoginForm  --> MenuForm : token
+MenuForm  --> QTExtension : token
+Exten --> MenuForm
+@enduml
