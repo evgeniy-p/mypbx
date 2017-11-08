@@ -28,3 +28,7 @@ menu_dict = {
     "domain": ['Your domain: ', 'Ваш домен: '],
     'prefix': ['Your SIP ID prefix: ', 'Ваш SIP ID всегда начинается с ']
 }
+
+ext_dict = {
+    "ext_menu_window": ["Phone extensions", "Телефонные добавочные"]
+}

@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QMainWindow
 class MenuForm:
     def __init__(self, loginform):
         self.loginform = loginform
-        self.LANG = 1
+        self.LANG = loginform.LANG
         self.menu_window = QMainWindow()
         self.menu_window.move(300, 300)
         self.menu_window.setFixedWidth(320)
@@ -90,6 +90,12 @@ class MenuForm:
         self.setting_menu.addAction('EMAIL')
         self.setting_menu.addSeparator()
         self.setting_menu.addAction('123123123123123123')
+        if self.loginform.token:
+            self.retranslate_user_info()
+        else:
+            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG]))
+            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG]))
+            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG]))
 
     def extension_but_clicked(self):
         if self.loginform.token:
@@ -112,15 +118,15 @@ class MenuForm:
         print('fax')
 
     def retranslate_user_info(self):
-        if self.loginform.token:
-            self.clientinfo = client_info.Client(self.loginform)
-            _translate = QtCore.QCoreApplication.translate
-            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG] +
-                                           self.clientinfo.user_name['name']))
-            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG] +
-                                           self.clientinfo.clientinfo['domain']))
-            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG] +
-                                           self.clientinfo.clientinfo['prefix'] + '*'))
+        self.clientinfo = client_info.Client(self.loginform)
+        _translate = QtCore.QCoreApplication.translate
+        self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG] +
+                                       self.clientinfo.user_name['name']))
+        self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG] +
+                                       self.clientinfo.clientinfo['domain']))
+        self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG] +
+                                       self.clientinfo.clientinfo['prefix'] + '*'))
+
 
 
     def show_demo(self):

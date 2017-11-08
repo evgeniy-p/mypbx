@@ -12,11 +12,10 @@ logging.basicConfig(filename='mypbx.log', level=logging.DEBUG)
 
 def set_lang(pref):
     login_form.LANG = pref
-    menu_form.LANG = pref
     login_form.retranslateUi(login_form.start_window)
     menu_form.retranslateUi(menu_form.menu_window)
     menu_form.start_ext_menu.close()
-    menu_form.retranslate_user_info()
+    ext_form.retranslateUi()
 
 
 def set_ru_lang():

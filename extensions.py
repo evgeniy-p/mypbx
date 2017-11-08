@@ -24,11 +24,8 @@ class Exten:
 
     def get_all_extensions(self, **kwargs):
         payload = kwargs
-        print(payload)
         answ= requests.get(host+'/client/{client_id}/extension/'.format(client_id=self.menuform.clientinfo.clientinfo['id']),
                             headers=self.menuform.loginform.take_auth_header(), params=payload)
-        print(answ.content)
-
         return json.loads(answ.content)
 
     def add_extension(self, name=None):

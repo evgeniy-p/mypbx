@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
+import language
 
 
 def setup_tab(num_tab, tab_obj):
@@ -62,7 +63,7 @@ def fill_ext(exten_list, tab_obj, exten_widget_start_pos, exten_chkbox_start_pos
 class QTExtension:
     def __init__(self, menuform):
         self.menuform = menuform
-        self.LANG = 1
+        self.LANG = self.menuform.LANG
         self.ext_menu_window = QMainWindow()
         self.ext_menu_window.move(650, 300)
         self.ext_menu_window.setFixedWidth(607)
@@ -70,16 +71,8 @@ class QTExtension:
         self.tubs_num = range(1)
         self.exten_list = [{'id': 28, 'name': 'test*123', 'label': 'test'},
                            {'id': 36, 'name': 'test*234', 'label': 'test2'}]
-
-    def setupUi(self):
-        if self.menuform.loginform.token:
-            self.tubs_num = range(1)
-            self.exten_list = self.menuform.exten_class.get_all_extensions(**{'type': 'phone'})
         self.ext_menu_window.setObjectName("self.ext_menu_window")
         self.ext_menu_window.resize(607, 600)
-        """
-        Кнопки сверху
-        """
         self.pushButton = QtWidgets.QPushButton(self.ext_menu_window)
         self.pushButton.setGeometry(QtCore.QRect(20, 10, 131, 31))
         self.pushButton.setObjectName("pushButton")
@@ -95,35 +88,47 @@ class QTExtension:
         self.tabWidget = QtWidgets.QTabWidget(self.ext_menu_window)
         self.tabWidget.setGeometry(QtCore.QRect(0, 60, 601, 521))
         self.tabWidget.setObjectName("tabWidget")
-        """
-        Первый таб
-        """
-        if self.tubs_num and self.exten_list:
-            for numbers in self.tubs_num:
-                globals()['tab'+str(numbers)] = QtWidgets.QWidget()
-                globals()['tab'+str(numbers)].setObjectName('tab'+str(numbers))
-                setup_tab('tab'+str(numbers), globals()['tab'+str(numbers)])
+
+    def setupUi(self):
+        if self.menuform.loginform.token:
+            index = 1
+            have_ext = True
+            while have_ext:
+                self.exten_list = self.menuform.exten_class.get_all_extensions(**{'type': 'phone', 'per_page': '10',
+                                                                                  'page': str(index)})
+                index += 1
+                try:
+                    self.exten_list[0]
+                except IndexError:
+                    have_ext = False
+                    break
+                globals()['page' + str(index)] = QtWidgets.QWidget()
+                globals()['page' + str(index)].setObjectName('page' + str(index))
+                setup_tab('page' + str(index), globals()['page' + str(index)])
                 exten_widget_start_pos = 70
                 exten_chkbox_start_pos = 80
-                fill_ext(self.exten_list, globals()['tab'+str(numbers)], exten_widget_start_pos,
+                fill_ext(self.exten_list, globals()['page' + str(index)], exten_widget_start_pos,
                          exten_chkbox_start_pos)
-                self.tabWidget.addTab(globals()['tab'+str(numbers)], "")
-
-
-
-
+                self.tabWidget.addTab(globals()['page' + str(index)], "")
+        else:
+            for numbers in self.tubs_num:
+                globals()['tab' + str(numbers)] = QtWidgets.QWidget()
+                globals()['tab' + str(numbers)].setObjectName('tab' + str(numbers))
+                setup_tab('tab' + str(numbers), globals()['tab' + str(numbers)])
+                exten_widget_start_pos = 70
+                exten_chkbox_start_pos = 80
+                fill_ext(self.exten_list, globals()['tab' + str(numbers)], exten_widget_start_pos,
+                         exten_chkbox_start_pos)
+                self.tabWidget.addTab(globals()['tab' + str(numbers)], "")
         self.retranslateUi()
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(self.ext_menu_window)
 
     def retranslateUi(self):
+        self.LANG = self.menuform.LANG
         _translate = QtCore.QCoreApplication.translate
-        self.ext_menu_window.setWindowTitle(_translate("self.ext_menu_window", "self.ext_menu_window"))
+        self.ext_menu_window.setWindowTitle(_translate("self.ext_menu_window", language.ext_dict["ext_menu_window"][self.LANG]))
         self.pushButton.setText(_translate("self.ext_menu_window", "12"))
         self.pushButton_2.setText(_translate("self.ext_menu_window", "9"))
         self.pushButton_3.setText(_translate("self.ext_menu_window", "10"))
         self.pushButton_4.setText(_translate("self.ext_menu_window", "11"))
-        if self.tubs_num:
-            for nums in self.tubs_num:
-                self.tabWidget.setTabText(self.tabWidget.indexOf(globals()['tab' + str(nums)]),
-                                          _translate("self.ext_menu_window", 'tab' + str(nums)))

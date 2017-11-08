@@ -4,9 +4,12 @@ class main{
 main --> LoginForm
 main --> MenuForm
 main --> QTExtension
-Token --> LoginForm
 ClientInfo --> MenuForm
+Token --> LoginForm : token
+
 LoginForm  --> MenuForm : token
 MenuForm  --> QTExtension : token
+MenuForm  --> ClientInfo : token
+MenuForm  --> Exten : token
 Exten --> MenuForm
 @enduml
