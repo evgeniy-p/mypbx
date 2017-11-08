@@ -118,16 +118,15 @@ class MenuForm:
         print('fax')
 
     def retranslate_user_info(self):
-        self.clientinfo = client_info.Client(self.loginform)
-        _translate = QtCore.QCoreApplication.translate
-        self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG] +
-                                       self.clientinfo.user_name['name']))
-        self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG] +
-                                       self.clientinfo.clientinfo['domain']))
-        self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG] +
-                                       self.clientinfo.clientinfo['prefix'] + '*'))
-
-
+        if self.loginform.token:
+            self.clientinfo = client_info.Client(self.loginform)
+            _translate = QtCore.QCoreApplication.translate
+            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG] +
+                                           self.clientinfo.user_name['name']))
+            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG] +
+                                           self.clientinfo.clientinfo['domain']))
+            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG] +
+                                           self.clientinfo.clientinfo['prefix'] + '*'))
 
     def show_demo(self):
         self.menu_window.show()

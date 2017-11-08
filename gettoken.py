@@ -44,9 +44,8 @@ class Token:
         resouath = requests.post('https://apiproxy.telphin.ru/oauth/token', data=payload)
         if not resouath.ok:
             raise myexception.cant_get_OK_check_login_and_password
-        self.token = json.loads(resouath.content)["access_token"]
-
-        self.refresh_token = json.loads(resouath.content)["refresh_token"]
+        self.token = json.loads(resouath.content.decode('ascii'))["access_token"]
+        self.refresh_token = json.loads(resouath.content.decode('ascii'))["refresh_token"]
         self.tokentime = time()
         return self.token
 
@@ -55,6 +54,6 @@ class Token:
         resouath = requests.post('https://apiproxy.telphin.ru/oauth/token', data=payload)
         if not resouath.ok:
             raise myexception.cant_get_OK_need_recconect
-        self.token = json.loads(resouath.content)["access_token"]
-        self.refresh_token = json.loads(resouath.content)["refresh_token"]
+        self.token = json.loads(resouath.content.decode('ascii'))["access_token"]
+        self.refresh_token = json.loads(resouath.content.decode('ascii'))["refresh_token"]
         return self.token

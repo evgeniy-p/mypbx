@@ -88,6 +88,7 @@ class LoginForm(gettoken.Token):
                 self.start_main_menu.show()
                 self.start_window.close()
         else:
+            print(self.textBrowser.text(), self.textBrowser_2.text())
             self.log.warning("cant_get_OK_check_login_and_password")
             self.errormessage.setText(language.login_dict['login warning'][self.LANG])
             self.errormessage.setDetailedText(language.login_dict["no credentials"][self.LANG])

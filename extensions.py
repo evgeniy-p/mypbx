@@ -26,7 +26,7 @@ class Exten:
         payload = kwargs
         answ= requests.get(host+'/client/{client_id}/extension/'.format(client_id=self.menuform.clientinfo.clientinfo['id']),
                             headers=self.menuform.loginform.take_auth_header(), params=payload)
-        return json.loads(answ.content)
+        return json.loads(answ.content.decode('ascii'))
 
     def add_extension(self, name=None):
         if not name:
@@ -35,7 +35,7 @@ class Exten:
             self.extbody['name'] = name
         answer = requests.post('https://apiproxy.telphin.ru/api/ver1.0/client/{client_id}/extension/',
                                headers=self.menuform.loginform.take_auth_header(), data=self.extbody)
-        return json.loads(answer.content)
+        return json.loads(answer.content.decode('ascii'))
 
     def del_extension(self):
         pass
