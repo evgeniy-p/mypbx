@@ -9,7 +9,7 @@ class LoginForm(gettoken.Token):
     def __init__(self, log):
         gettoken.Token.__init__(self)
         self.log = log
-        self.LANG = 1
+        self.LANG = [1]
         self.start_window = QMainWindow()
         self.start_window.move(300, 300)
         self.start_window.setFixedWidth(400)
@@ -64,16 +64,16 @@ class LoginForm(gettoken.Token):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", language.login_dict["Login_WindowTitle"][self.LANG]))
-        self.pushButton.setText(_translate("Form", language.login_dict["show_demo_pushButton"][self.LANG]))
-        self.pushButton_2.setText(_translate("Form", language.login_dict["login_button"][self.LANG]))
-        self.label.setText(_translate("Form", language.login_dict["app ID"][self.LANG]))
-        self.label_2.setText(_translate("Form", language.login_dict["app Secret"][self.LANG]))
-        self.label_3.setText(_translate("Form", language.login_dict["app credentials"][self.LANG]))
+        Form.setWindowTitle(_translate("Form", language.login_dict["Login_WindowTitle"][self.LANG[0]]))
+        self.pushButton.setText(_translate("Form", language.login_dict["show_demo_pushButton"][self.LANG[0]]))
+        self.pushButton_2.setText(_translate("Form", language.login_dict["login_button"][self.LANG[0]]))
+        self.label.setText(_translate("Form", language.login_dict["app ID"][self.LANG[0]]))
+        self.label_2.setText(_translate("Form", language.login_dict["app Secret"][self.LANG[0]]))
+        self.label_3.setText(_translate("Form", language.login_dict["app credentials"][self.LANG[0]]))
         self.pushButton_3.setText(_translate("Form", "RU"))
         self.pushButton_4.setText(_translate("Form", "EN"))
-        self.label_4.setText(_translate("Form", language.login_dict["languag"][self.LANG]))
-        self.errormessage.setWindowTitle(language.login_dict["error frame name"][self.LANG])
+        self.label_4.setText(_translate("Form", language.login_dict["languag"][self.LANG[0]]))
+        self.errormessage.setWindowTitle(language.login_dict["error frame name"][self.LANG[0]])
 
     def login_button_clicked(self):
         if self.textBrowser.text() and self.textBrowser_2.text():
@@ -81,8 +81,8 @@ class LoginForm(gettoken.Token):
                 self.get_token(self.textBrowser.text(), self.textBrowser_2.text())
             except myexception.cant_get_OK_check_login_and_password:
                 self.log.warning("cant_get_OK_check_login_and_password")
-                self.errormessage.setText(language.login_dict['login warning'][self.LANG])
-                self.errormessage.setDetailedText(language.login_dict["app credentials wrong"][self.LANG])
+                self.errormessage.setText(language.login_dict['login warning'][self.LANG[0]])
+                self.errormessage.setDetailedText(language.login_dict["app credentials wrong"][self.LANG[0]])
                 self.errormessage.show()
             else:
                 self.start_main_menu.show()
@@ -90,8 +90,8 @@ class LoginForm(gettoken.Token):
         else:
             print(self.textBrowser.text(), self.textBrowser_2.text())
             self.log.warning("cant_get_OK_check_login_and_password")
-            self.errormessage.setText(language.login_dict['login warning'][self.LANG])
-            self.errormessage.setDetailedText(language.login_dict["no credentials"][self.LANG])
+            self.errormessage.setText(language.login_dict['login warning'][self.LANG[0]])
+            self.errormessage.setDetailedText(language.login_dict["no credentials"][self.LANG[0]])
             self.errormessage.show()
 
 

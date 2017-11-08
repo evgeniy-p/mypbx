@@ -125,9 +125,8 @@ class QTExtension:
         QtCore.QMetaObject.connectSlotsByName(self.ext_menu_window)
 
     def retranslateUi(self):
-        self.LANG = self.menuform.LANG
         _translate = QtCore.QCoreApplication.translate
-        self.ext_menu_window.setWindowTitle(_translate("self.ext_menu_window", language.ext_dict["ext_menu_window"][self.LANG]))
+        self.ext_menu_window.setWindowTitle(_translate("self.ext_menu_window", language.ext_dict["ext_menu_window"][self.LANG[0]]))
         self.pushButton.setText(_translate("self.ext_menu_window", "12"))
         self.pushButton_2.setText(_translate("self.ext_menu_window", "9"))
         self.pushButton_3.setText(_translate("self.ext_menu_window", "10"))

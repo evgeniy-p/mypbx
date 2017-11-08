@@ -11,7 +11,7 @@ import logging
 logging.basicConfig(filename='mypbx.log', level=logging.DEBUG)
 
 def set_lang(pref):
-    login_form.LANG = pref
+    login_form.LANG[0] = pref
     login_form.retranslateUi(login_form.start_window)
     menu_form.retranslateUi(menu_form.menu_window)
     menu_form.start_ext_menu.close()

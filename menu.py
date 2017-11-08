@@ -72,19 +72,19 @@ class MenuForm:
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.setting_menu.clear()
-        MainWindow.setWindowTitle(_translate("MainWindow", language.menu_dict["Menu_WindowTitle"][self.LANG]))
-        self.label.setText(_translate("MainWindow", language.menu_dict["languag"][self.LANG]))
+        MainWindow.setWindowTitle(_translate("MainWindow", language.menu_dict["Menu_WindowTitle"][self.LANG[0]]))
+        self.label.setText(_translate("MainWindow", language.menu_dict["languag"][self.LANG[0]]))
         self.pushButton.setText(_translate("MainWindow", "EN"))
         self.pushButton_2.setText(_translate("MainWindow", "RU"))
-        self.pushButton_3.setText(_translate("MainWindow", language.menu_dict["Extensions"][self.LANG]))
-        self.pushButton_4.setText(_translate("MainWindow", language.menu_dict["Routing"][self.LANG]))
-        self.pushButton_5.setText(_translate("MainWindow", language.menu_dict["CDR"][self.LANG]))
-        self.pushButton_6.setText(_translate("MainWindow", language.menu_dict["DialRul"][self.LANG]))
-        self.pushButton_7.setText(_translate("MainWindow", language.menu_dict["Faxes"][self.LANG]))
+        self.pushButton_3.setText(_translate("MainWindow", language.menu_dict["Extensions"][self.LANG[0]]))
+        self.pushButton_4.setText(_translate("MainWindow", language.menu_dict["Routing"][self.LANG[0]]))
+        self.pushButton_5.setText(_translate("MainWindow", language.menu_dict["CDR"][self.LANG[0]]))
+        self.pushButton_6.setText(_translate("MainWindow", language.menu_dict["DialRul"][self.LANG[0]]))
+        self.pushButton_7.setText(_translate("MainWindow", language.menu_dict["Faxes"][self.LANG[0]]))
         self.pushButton_8.setText(_translate("MainWindow", "PushButton"))
         self.pushButton_9.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_10.setText(_translate("MainWindow", language.menu_dict["Settings"][self.LANG]))
-        self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG]))
+        self.pushButton_10.setText(_translate("MainWindow", language.menu_dict["Settings"][self.LANG[0]]))
+        self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG[0]]))
         self.setting_menu.addAction('PWD')
         self.setting_menu.addSeparator()
         self.setting_menu.addAction('EMAIL')
@@ -93,9 +93,9 @@ class MenuForm:
         if self.loginform.token:
             self.retranslate_user_info()
         else:
-            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG]))
-            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG]))
-            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG]))
+            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG[0]]))
+            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG[0]]))
+            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG[0]]))
 
     def extension_but_clicked(self):
         if self.loginform.token:
@@ -121,11 +121,11 @@ class MenuForm:
         if self.loginform.token:
             self.clientinfo = client_info.Client(self.loginform)
             _translate = QtCore.QCoreApplication.translate
-            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG] +
+            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG[0]] +
                                            self.clientinfo.user_name['name']))
-            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG] +
+            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG[0]] +
                                            self.clientinfo.clientinfo['domain']))
-            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG] +
+            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG[0]] +
                                            self.clientinfo.clientinfo['prefix'] + '*'))
 
     def show_demo(self):
