@@ -68,7 +68,7 @@ class QTExtension:
         self.ext_menu_window.move(650, 300)
         self.ext_menu_window.setFixedWidth(607)
         self.ext_menu_window.setFixedHeight(600)
-        self.tubs_num = range(1)
+        self.tubs_num = [1]
         self.exten_list = [{'id': 28, 'name': 'test*123', 'label': 'test'},
                            {'id': 36, 'name': 'test*234', 'label': 'test2'}]
         self.ext_menu_window.setObjectName("self.ext_menu_window")
@@ -93,10 +93,10 @@ class QTExtension:
         if self.menuform.loginform.token:
             index = 1
             have_ext = True
+            self.tabWidget.clear()
             while have_ext:
                 self.exten_list = self.menuform.exten_class.get_all_extensions(**{'type': 'phone', 'per_page': '10',
                                                                                   'page': str(index)})
-                index += 1
                 try:
                     self.exten_list[0]
                 except IndexError:
@@ -109,8 +109,10 @@ class QTExtension:
                 exten_chkbox_start_pos = 80
                 fill_ext(self.exten_list, globals()['page' + str(index)], exten_widget_start_pos,
                          exten_chkbox_start_pos)
-                self.tabWidget.addTab(globals()['page' + str(index)], "")
+                self.tabWidget.addTab(globals()['page' + str(index)], str(index))
+                index += 1
         else:
+            self.tabWidget.clear()
             for numbers in self.tubs_num:
                 globals()['tab' + str(numbers)] = QtWidgets.QWidget()
                 globals()['tab' + str(numbers)].setObjectName('tab' + str(numbers))
@@ -119,10 +121,9 @@ class QTExtension:
                 exten_chkbox_start_pos = 80
                 fill_ext(self.exten_list, globals()['tab' + str(numbers)], exten_widget_start_pos,
                          exten_chkbox_start_pos)
-                self.tabWidget.addTab(globals()['tab' + str(numbers)], "")
+                self.tabWidget.addTab(globals()['tab' + str(numbers)], str(numbers))
         self.retranslateUi()
-        self.tabWidget.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(self.ext_menu_window)
+
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate

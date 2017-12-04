@@ -14,7 +14,7 @@ def set_lang(pref):
     login_form.LANG[0] = pref
     login_form.retranslateUi(login_form.start_window)
     menu_form.retranslateUi(menu_form.menu_window)
-    menu_form.start_ext_menu.close()
+    ext_form.ext_menu_windowclose()
     ext_form.retranslateUi()
 
 
@@ -62,7 +62,6 @@ login_form.pushButton_4.clicked.connect(set_en_lang)
 """
 menu_form.pushButton.clicked.connect(set_en_lang)
 menu_form.pushButton_2.clicked.connect(set_ru_lang)
-menu_form.pushButton_3.clicked.connect(menu_form.extension_but_clicked)
 menu_form.pushButton_3.clicked.connect(ext_form.setupUi)
 menu_form.pushButton_3.clicked.connect(menu_form.extension_but_clicked_show_window)
 menu_form.pushButton_4.clicked.connect(menu_form.routing_but_clicked)

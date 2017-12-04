@@ -97,13 +97,25 @@ class MenuForm:
             self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG[0]]))
             self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG[0]]))
 
-    def extension_but_clicked(self):
+    def retranslate_user_info(self):
         if self.loginform.token:
+            self.clientinfo = client_info.Client(self.loginform)
+            _translate = QtCore.QCoreApplication.translate
+            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG[0]] +
+                                           self.clientinfo.user_name['name']))
+            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG[0]] +
+                                           self.clientinfo.clientinfo['domain']))
+            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG[0]] +
+                                           self.clientinfo.clientinfo['prefix'] + '*'))
             self.exten_class = extensions.Exten(self)
+
+    def show_demo(self):
+        self.menu_window.show()
+        self.loginform.start_window.close()
+
 
     def extension_but_clicked_show_window(self):
         self.start_ext_menu.show()
-
 
     def routing_but_clicked(self):
         print('routing')
@@ -117,19 +129,5 @@ class MenuForm:
     def fax_but_clicked(self):
         print('fax')
 
-    def retranslate_user_info(self):
-        if self.loginform.token:
-            self.clientinfo = client_info.Client(self.loginform)
-            _translate = QtCore.QCoreApplication.translate
-            self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG[0]] +
-                                           self.clientinfo.user_name['name']))
-            self.label2.setText(_translate("MainWindow", language.menu_dict["domain"][self.LANG[0]] +
-                                           self.clientinfo.clientinfo['domain']))
-            self.label3.setText(_translate("MainWindow", language.menu_dict["prefix"][self.LANG[0]] +
-                                           self.clientinfo.clientinfo['prefix'] + '*'))
-
-    def show_demo(self):
-        self.menu_window.show()
-        self.loginform.start_window.close()
 
 
