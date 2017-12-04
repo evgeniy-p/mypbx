@@ -132,3 +132,4 @@ class QTExtension:
         self.pushButton_2.setText(_translate("self.ext_menu_window", "9"))
         self.pushButton_3.setText(_translate("self.ext_menu_window", "10"))
         self.pushButton_4.setText(_translate("self.ext_menu_window", "11"))
+
