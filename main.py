@@ -14,7 +14,7 @@ def set_lang(pref):
     login_form.LANG[0] = pref
     login_form.retranslateUi(login_form.start_window)
     menu_form.retranslateUi(menu_form.menu_window)
-    ext_form.ext_menu_windowclose()
+    ext_form.ext_menu_window.close()
     ext_form.retranslateUi()
 
 
@@ -62,12 +62,21 @@ login_form.pushButton_4.clicked.connect(set_en_lang)
 """
 menu_form.pushButton.clicked.connect(set_en_lang)
 menu_form.pushButton_2.clicked.connect(set_ru_lang)
-menu_form.pushButton_3.clicked.connect(ext_form.setupUi)
-menu_form.pushButton_3.clicked.connect(menu_form.extension_but_clicked_show_window)
-menu_form.pushButton_4.clicked.connect(menu_form.routing_but_clicked)
-menu_form.pushButton_5.clicked.connect(menu_form.cdr_but_clicked)
-menu_form.pushButton_6.clicked.connect(menu_form.dialrul_but_clicked)
-menu_form.pushButton_7.clicked.connect(menu_form.fax_but_clicked)
+menu_form.pushButton_3.clicked.connect(menu_form.routing_but_clicked)
+menu_form.pushButton_4.clicked.connect(ext_form.setupUi)
+menu_form.pushButton_4.clicked.connect(menu_form.extension_but_clicked_show_window)
+menu_form.pushButton_5.clicked.connect(menu_form.queue_but_clicked)
+menu_form.pushButton_6.clicked.connect(menu_form.cdr_but_clicked)
+menu_form.pushButton_7.clicked.connect(menu_form.conf_but_clicked)
+menu_form.pushButton_8.clicked.connect(menu_form.fax_but_clicked)
+menu_form.pushButton_9.clicked.connect(menu_form.dialrul_but_clicked)
+"""
+В выпадающем списке настроек дергаются необходимые кнопки
+обьявлено в menu_form.retranslateUi 
+для поддержки переключения по языкам
+"""
+
+
 """
 Выход
 """

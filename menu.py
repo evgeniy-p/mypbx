@@ -76,20 +76,35 @@ class MenuForm:
         self.label.setText(_translate("MainWindow", language.menu_dict["languag"][self.LANG[0]]))
         self.pushButton.setText(_translate("MainWindow", "EN"))
         self.pushButton_2.setText(_translate("MainWindow", "RU"))
-        self.pushButton_3.setText(_translate("MainWindow", language.menu_dict["Extensions"][self.LANG[0]]))
-        self.pushButton_4.setText(_translate("MainWindow", language.menu_dict["Routing"][self.LANG[0]]))
-        self.pushButton_5.setText(_translate("MainWindow", language.menu_dict["CDR"][self.LANG[0]]))
-        self.pushButton_6.setText(_translate("MainWindow", language.menu_dict["DialRul"][self.LANG[0]]))
-        self.pushButton_7.setText(_translate("MainWindow", language.menu_dict["Faxes"][self.LANG[0]]))
-        self.pushButton_8.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_9.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton_3.setText(_translate("MainWindow", language.menu_dict["Routing"][self.LANG[0]]))
+        self.pushButton_4.setText(_translate("MainWindow", language.menu_dict["Extensions"][self.LANG[0]]))
+        self.pushButton_5.setText(_translate("MainWindow", language.menu_dict["Queue_Group"][self.LANG[0]]))
+        self.pushButton_6.setText(_translate("MainWindow", language.menu_dict["CDR"][self.LANG[0]]))
+        self.pushButton_7.setText(_translate("MainWindow", language.menu_dict["conf"][self.LANG[0]]))
+        self.pushButton_8.setText(_translate("MainWindow", language.menu_dict["Faxes"][self.LANG[0]]))
+        self.pushButton_9.setText(_translate("MainWindow", language.menu_dict["DialRul"][self.LANG[0]]))
         self.pushButton_10.setText(_translate("MainWindow", language.menu_dict["Settings"][self.LANG[0]]))
         self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG[0]]))
-        self.setting_menu.addAction('PWD')
+        self.passwd = self.setting_menu.addAction(language.menu_dict["passwd"][self.LANG[0]])
         self.setting_menu.addSeparator()
-        self.setting_menu.addAction('EMAIL')
+        self.email = self.setting_menu.addAction(language.menu_dict["email"][self.LANG[0]])
         self.setting_menu.addSeparator()
-        self.setting_menu.addAction('123123123123123123')
+        self.timeZ = self.setting_menu.addAction(language.menu_dict["timeZ"][self.LANG[0]])
+        self.setting_menu.addSeparator()
+        self.notif = self.setting_menu.addAction(language.menu_dict["notif"][self.LANG[0]])
+        self.setting_menu.addSeparator()
+        self.wbl = self.setting_menu.addAction(language.menu_dict["white and black list"][self.LANG[0]])
+        self.setting_menu.addSeparator()
+        self.sounds = self.setting_menu.addAction(language.menu_dict["sounds"][self.LANG[0]])
+        """
+        В выпадающем списке дергаются необходимые кнопки
+        """
+        self.passwd.triggered.connect(self.passwd_but_clicked)
+        self.email.triggered.connect(self.email_but_clicked)
+        self.timeZ.triggered.connect(self.timeZ_but_clicked)
+        self.notif.triggered.connect(self.notif_but_clicked)
+        self.wbl.triggered.connect(self.wbl_but_clicked)
+        self.sounds.triggered.connect(self.sounds_but_clicked)
         if self.loginform.token:
             self.retranslate_user_info()
         else:
@@ -113,21 +128,44 @@ class MenuForm:
         self.menu_window.show()
         self.loginform.start_window.close()
 
+    def routing_but_clicked(self):
+        print('routing')
 
     def extension_but_clicked_show_window(self):
         self.start_ext_menu.show()
 
-    def routing_but_clicked(self):
-        print('routing')
+    def queue_but_clicked(self):
+        print('queue')
 
     def cdr_but_clicked(self):
         print('cdr')
 
-    def dialrul_but_clicked(self):
-        print('dialrul')
+    def conf_but_clicked(self):
+        print('conf')
 
     def fax_but_clicked(self):
         print('fax')
+
+    def dialrul_but_clicked(self):
+        print('dialrul')
+
+    def passwd_but_clicked(self):
+        print('passwd')
+
+    def email_but_clicked(self):
+        print('email')
+
+    def timeZ_but_clicked(self):
+        print('timeZ')
+
+    def notif_but_clicked(self):
+        print('notif')
+
+    def wbl_but_clicked(self):
+        print('wbl')
+
+    def sounds_but_clicked(self):
+        print('sounds')
 
 
 
