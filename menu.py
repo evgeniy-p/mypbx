@@ -105,6 +105,8 @@ class MenuForm:
         self.notif.triggered.connect(self.notif_but_clicked)
         self.wbl.triggered.connect(self.wbl_but_clicked)
         self.sounds.triggered.connect(self.sounds_but_clicked)
+        """
+        """
         if self.loginform.token:
             self.retranslate_user_info()
         else:

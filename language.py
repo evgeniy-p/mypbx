@@ -38,5 +38,13 @@ menu_dict = {
 }
 
 ext_dict = {
-    "ext_menu_window": ["Phone extensions", "Телефонные добавочные"]
+    "ext_menu_window": ["Phone extensions", "Телефонные добавочные"],
+    "create_ext": ["Create extensions", "Создать добавочный"],
+    "unused": ["Show all unused extensions", "Показать неиспользуемые добавочные"],
+    "label": ["Label|Caller ID name", "Имя звонящего"],
+    "inccallR": ["Incoming call rules", "Правила для входящего звонка"],
+    "termpwd": ["Change SIP ID password", "Изменить пароль этого SIP ID"],
+    "extnum": ["Set external number", "Закрепить внешний номер"],
+    "record": ["Call record setting", "Настройка записи разговора"],
+    "oth_sett": ["Other settings", "Остальные настройки"]
 }
