@@ -46,5 +46,10 @@ ext_dict = {
     "termpwd": ["Change SIP ID password", "Изменить пароль этого SIP ID"],
     "extnum": ["Set external number", "Закрепить внешний номер"],
     "record": ["Call record setting", "Настройка записи разговора"],
-    "oth_sett": ["Other settings", "Остальные настройки"]
+    "oth_sett": ["Other settings", "Остальные настройки"],
+    "mass_update": ['Edit selected...', 'Редактировать выделенные...'],
+    "mass_update_butt": [[350, 10, 150, 31], [250, 10, 250, 31]],
+    "ext_butt": ["Edit SIP ID", "Редактировать"],
+    "delete": ["Delete", "Удалить"],
+    "refresh_but": ["Refresh", "Обновить"]
 }

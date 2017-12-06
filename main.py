@@ -15,8 +15,6 @@ def set_lang(pref):
     login_form.retranslateUi(login_form.start_window)
     menu_form.retranslateUi(menu_form.menu_window)
     ext_form.ext_menu_window.close()
-    ext_form.retranslateUi()
-
 
 def set_ru_lang():
     set_lang(1)
@@ -71,11 +69,15 @@ menu_form.pushButton_7.clicked.connect(menu_form.conf_but_clicked)
 menu_form.pushButton_8.clicked.connect(menu_form.fax_but_clicked)
 menu_form.pushButton_9.clicked.connect(menu_form.dialrul_but_clicked)
 """
-В выпадающем списке настроек дергаются необходимые кнопки
-обьявлено в menu_form.retranslateUi 
+В выпадающем списке настроек дергаются необходимые кнопки, которые 
+обьявлены в menu_form.retranslateUi 
 для поддержки переключения по языкам
-"""
 
+Нажатие кнопок на странице добавочных
+"""
+ext_form.pushButton.clicked.connect(lambda: ext_form.print_hello_world('test'))
+ext_form.pushButton_2.clicked.connect(lambda: ext_form.print_hello_world('test'))
+ext_form.pushButton_3.clicked.connect(ext_form.setupUi)
 
 """
 Выход
