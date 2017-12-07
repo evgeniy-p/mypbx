@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication
 
 import login
 import menu
-from SIP_ID_menu import extensions_qt_test
+from SIP_ID_menu import extensions_qt
 
 logging.basicConfig(filename='mypbx.log', level=logging.DEBUG)
 
@@ -42,7 +42,7 @@ login_form.start_main_menu = menu_form.menu_window
 """
 Инициализация формы добавочных
 """
-ext_form = extensions_qt_test.QTExtension(menu_form)
+ext_form = extensions_qt.QTExtension(menu_form)
 menu_form.start_ext_menu = ext_form.ext_menu_window
 
 """
