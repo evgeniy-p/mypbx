@@ -1,12 +1,18 @@
 import logging
 import sys
-
+import os
+from icons_and_css import path
 from PyQt5.QtCore import QFile, QTextStream
 from PyQt5.QtWidgets import QApplication
 
 import login
 import menu
 from SIP_ID_menu import extensions_qt
+
+if os.name == 'nt':
+    path.windowsed()
+else:
+    path.unixed()
 
 logging.basicConfig(filename='mypbx.log', level=logging.DEBUG)
 
