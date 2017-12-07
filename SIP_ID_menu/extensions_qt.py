@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 import language
+from SIP_ID_menu import tab_class
+from SIP_ID_menu import ext_line
 
 
 class QTExtension:
@@ -35,8 +37,13 @@ class QTExtension:
         self.tabWidget = QtWidgets.QTabWidget(self.ext_menu_window)
         self.tabWidget.setGeometry(QtCore.QRect(0, 60, 601, 521))
         self.tabWidget.setObjectName("tabWidget")
+        self.menus = ('inccallR', 'record', 'label', 'extnum', 'termpwd', 'oth_sett', 'delete')
+        self.tab_dict = dict()
+        self.page_dict = dict()
+        self.exten_dict = dict()
 
     def setupUi(self):
+        self.page_dict = dict()
         if self.menuform.loginform.token:
             self.set_extensions()
         else:
@@ -51,104 +58,48 @@ class QTExtension:
 
     def set_extensions(self):
         index = 1
-        self.id_dict = dict()
+        # сначала очищаем виджет, чтобы вкладки не дублились
         self.tabWidget.clear()
         while True:
+            self.tab_dict = dict()
             self.exten_list = self.menuform.exten_class.get_all_extensions(**{'type': 'phone', 'per_page': '10',
                                                                               'page': str(index)})
             try:
                 self.exten_list[0]
             except IndexError:
                 return
-            globals()['page' + str(index)] = QtWidgets.QWidget()
-            globals()['page' + str(index)].setObjectName('page' + str(index))
-            self.setup_tab('page' + str(index), globals()['page' + str(index)])
-            self.id_dict[index] = self.fill_tab_ext(self.exten_list, globals()['page' + str(index)], 70, 80)
-            self.tabWidget.addTab(globals()['page' + str(index)], str(index))
+            # создаем инстанс вкладки - 'tab'
+            self.tab_dict[index] = tab_class.Tab(self.LANG)
+            # получаем все id добавочных, обративщись к функции, которая заполняет добавочными 'tab'
+            self.id_dict[index] = self.fill_tab_ext(index)
+            # теперь устанавливаем подменю в кнопку вкладки
+            self.tab_dict[index].setup_submenu(self.LANG, index, self.menus)
+            # добавляем вкладку на виджет
+            self.tabWidget.addTab(self.tab_dict[index].tab_page, str(index))
             index += 1
 
     def go_demo(self):
         self.tabWidget.clear()
         for tub_numb in self.tubs_nums:
-            globals()['tab' + str(tub_numb)] = QtWidgets.QWidget()
-            globals()['tab' + str(tub_numb)].setObjectName('tab' + str(tub_numb))
-            self.setup_tab('page' + str(tub_numb), globals()['tab' + str(tub_numb)])
-            self.fill_tab_ext(self.exten_list, globals()['tab' + str(tub_numb)], 70, 80)
-            self.tabWidget.addTab(globals()['tab' + str(tub_numb)], str(tub_numb))
+            self.tab_dict[tub_numb] = tab_class.Tab(self.LANG)
+            self.fill_tab_ext(tub_numb)
+            self.tab_dict[tub_numb].setup_submenu(self.LANG, tub_numb, self.menus)
+            self.tabWidget.addTab(self.tab_dict[tub_numb].tab_page, str(tub_numb))
 
-    def setup_tab(self, num_tab, tab_obj):
-        globals()['checkBox' + str(num_tab)] = QtWidgets.QCheckBox(tab_obj)
-        globals()['checkBox' + str(num_tab)].setGeometry(QtCore.QRect(505, 20, 17, 21))
-        globals()['checkBox' + str(num_tab)].setObjectName('checkBox' + str(num_tab))
-        globals()['pushButton' + str(num_tab)] = QtWidgets.QPushButton(tab_obj)
-        globals()['pushButton' + str(num_tab)].setGeometry(QtCore.QRect(language.ext_dict["mass_update_butt"][self.LANG[0]][0],
-                                                                        language.ext_dict["mass_update_butt"][self.LANG[0]][1],
-                                                                        language.ext_dict["mass_update_butt"][self.LANG[0]][2],
-                                                                        language.ext_dict["mass_update_butt"][self.LANG[0]][3]))
-        globals()['pushButton' + str(num_tab)].setObjectName('pushButton' + str(num_tab))
-        globals()['pushButton' + str(num_tab)].setText(language.ext_dict["mass_update"][self.LANG[0]])
-        globals()['setting_menu' + str(num_tab)] = QtWidgets.QMenu('setting_menu' + str(num_tab))
-        globals()['pushButton' + str(num_tab)].setMenu(globals()['setting_menu' + str(num_tab)])
-        self.setup_submenu(True, 'setting_menu', num_tab, 'inccallR', 'record', 'label', 'extnum',
-                           'termpwd', 'oth_sett', 'delete')
-
-    def fill_tab_ext(self, exten_list, tab_obj, exten_widget_start_pos, exten_chkbox_start_pos):
+    def fill_tab_ext(self, index):
         id_list = list()
-        for ext_dict in exten_list:
-            self.fill_ext_line(ext_dict, tab_obj, exten_widget_start_pos, exten_chkbox_start_pos)
+        self.exten_dict = dict()
+        exten_widget_start_pos = 70
+        exten_chkbox_start_pos = 80
+        for ext_dict in self.exten_list:
+            self.exten_dict[ext_dict['id']] = ext_line.Extline(self.LANG, self.tab_dict[index].tab_page, ext_dict,
+                                                               exten_widget_start_pos, exten_chkbox_start_pos,
+                                                               self.menus)
             exten_widget_start_pos += 40
             exten_chkbox_start_pos += 40
             id_list.append(ext_dict['id'])
+        self.page_dict[index] = self.exten_dict
         return id_list
-
-    def fill_ext_line(self, ext_dict, tab_obj, start1pos, start2pos):
-        globals()['horizontalLayoutWidget' + str(ext_dict['id'])] = QtWidgets.QWidget(tab_obj)
-        globals()['horizontalLayoutWidget' + str(ext_dict['id'])].setGeometry(QtCore.QRect(50, start1pos, 600, 41))
-        globals()['horizontalLayoutWidget' + str(ext_dict['id'])].setObjectName(
-            'horizontalLayoutWidget' + str(ext_dict['id']))
-        globals()['horizontalLayout' + str(ext_dict['id'])] = QtWidgets.QHBoxLayout(
-            globals()['horizontalLayoutWidget' + str(ext_dict['id'])])
-        globals()['horizontalLayout' + str(ext_dict['id'])].setContentsMargins(0, 0, 0, 0)
-        globals()['horizontalLayout' + str(ext_dict['id'])].setObjectName('horizontalLayout' + str(ext_dict['id']))
-        globals()['label' + str(ext_dict['id'])] = QtWidgets.QLabel(
-            globals()['horizontalLayoutWidget' + str(ext_dict['id'])])
-        globals()['label' + str(ext_dict['id'])].setObjectName('label' + str(ext_dict['id']))
-        globals()['label' + str(ext_dict['id'])].setText(ext_dict['name'])
-        globals()['horizontalLayout' + str(ext_dict['id'])].addWidget(globals()['label' + str(ext_dict['id'])])
-        globals()['label_2' + str(ext_dict['id'])] = QtWidgets.QLabel(
-            globals()['horizontalLayoutWidget' + str(ext_dict['id'])])
-        globals()['label_2' + str(ext_dict['id'])].setObjectName('label_2' + str(ext_dict['id']))
-        globals()['label_2' + str(ext_dict['id'])].setText(ext_dict['label'])
-        globals()['horizontalLayout' + str(ext_dict['id'])].addWidget(globals()['label_2' + str(ext_dict['id'])])
-        globals()['ext_menu_button' + str(ext_dict['id'])] = QtWidgets.QMenu()
-        self.setup_submenu(None, 'ext_menu_button', ext_dict['id'], 'inccallR', 'record', 'label',
-                           'extnum', 'termpwd', 'oth_sett', 'delete')
-        globals()['pushButton_5' + str(ext_dict['id'])] = QtWidgets.QPushButton(
-            globals()['horizontalLayoutWidget' + str(ext_dict['id'])])
-        globals()['pushButton_5' + str(ext_dict['id'])].setMenu(globals()['ext_menu_button' + str(ext_dict['id'])])
-        globals()['pushButton_5' + str(ext_dict['id'])].setObjectName('pushButton_5' + str(ext_dict['id']))
-        globals()['pushButton_5' + str(ext_dict['id'])].setText(language.ext_dict["ext_butt"][self.LANG[0]])
-        globals()['horizontalLayout' + str(ext_dict['id'])].addWidget(globals()['pushButton_5' + str(ext_dict['id'])])
-        globals()['checkBox2' + str(ext_dict['id'])] = QtWidgets.QCheckBox(
-            globals()['horizontalLayoutWidget' + str(ext_dict['id'])])
-        globals()['checkBox2' + str(ext_dict['id'])].setObjectName('checkBox2' + str(ext_dict['id']))
-        globals()['checkBox2' + str(ext_dict['id'])].setText(str(ext_dict['id']))
-        globals()['horizontalLayout' + str(ext_dict['id'])].addWidget(globals()['checkBox2' + str(ext_dict['id'])])
-        globals()['checkBox3' + str(ext_dict['id'])] = QtWidgets.QCheckBox(tab_obj)
-        globals()['checkBox3' + str(ext_dict['id'])].setGeometry(QtCore.QRect(20, start2pos, 20, 21))
-        globals()['checkBox3' + str(ext_dict['id'])].setObjectName('checkBox3' + str(ext_dict['id']))
-
-    def setup_submenu(self, on_page, name, ext_id, *args):
-        if on_page:
-            ATTR = self.get_page_checkbox()
-        else:
-            ATTR = ext_id
-        globals()[name + str(ext_id)].clear()
-        for num, submenu in enumerate(args):
-            globals()[str(num) + str(ext_id)] = globals()[name + str(ext_id)].addAction(language.ext_dict[submenu]
-                                                                                             [self.LANG[0]])
-            globals()[str(num) + str(ext_id)].triggered.connect(lambda: self.print_hello_world(ATTR))
-            globals()[name + str(ext_id)].addSeparator()
 
     def get_page_checkbox(self):
         return 'test'
@@ -164,5 +115,5 @@ class QTExtension:
 
     def print_all_ids(self):
         print(self.id_dict)
-    
+
 
