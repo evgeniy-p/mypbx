@@ -37,5 +37,3 @@ def unixed():
         for line in lines:
             find = re.compile(pattern)
             textfile.write(find.sub(r'    image: url(: \1);', line))
-
-unixed()
