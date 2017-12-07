@@ -55,3 +55,4 @@ ext_dict = {
     "all_this_page": ["Update SELECTED on ALL page", "Обновить ВООБЩЕ ВСЕ ВЫДЕЛЕННЫЕ"],
     "all_all_page": ["Update ALL on ALL pages", "Обновить ВООБЩЕ ВСЕ"]
 }
+
