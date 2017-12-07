@@ -1,8 +1,9 @@
-import language
-import client_info
-import extensions
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
+
+import client_info
+import language
+from SIP_ID_menu import extensions
 
 
 class MenuForm:

@@ -51,5 +51,7 @@ ext_dict = {
     "mass_update_butt": [[350, 10, 150, 31], [250, 10, 250, 31]],
     "ext_butt": ["Edit SIP ID", "Редактировать"],
     "delete": ["Delete", "Удалить"],
-    "refresh_but": ["Refresh", "Обновить"]
+    "refresh_but": ["Refresh", "Обновить"],
+    "all_this_page": ["Update SELECTED on ALL page", "Обновить ВООБЩЕ ВСЕ ВЫДЕЛЕННЫЕ"],
+    "all_all_page": ["Update ALL on ALL pages", "Обновить ВООБЩЕ ВСЕ"]
 }
