@@ -3,7 +3,7 @@ import re
 
 
 def windowsed():
-    with open(str(os.path.dirname(os.path.abspath(__file__))) + '\\main.qss', 'r') as textfile:
+    with open(str(os.path.dirname(os.path.abspath(__file__))) + '\\main.src', 'r') as textfile:
         test = textfile.readline()
         if test == '/*WIN*/\n':
             return print('already in windows style')
@@ -19,22 +19,33 @@ def windowsed():
             find = re.compile(pattern)
             textfile.write(find.sub(r'    image: url("{path}/\1");'.format(path='/'.join(os.path.dirname(__file__).split('\\'))), line))
 
+            pattern1 = '^.*image:.*:(.*).png.*'
+            find1 = re.compile(pattern1)
+            pattern2 = '^.*border-image:.*:(.*).png.*'
+            find2 = re.compile(pattern2)
+            if find1.match(line):
+                textfile.write(
+                    find1.sub(r'    image: url("{path}/\1.png");'.format(path=os.path.dirname(__file__)), line))
+            elif find2.match(line):
+                textfile.write(
+                    find2.sub(r'    border-image: url("{path}/\1.png");'.format(path=os.path.dirname(__file__)), line))
+            else:
+                textfile.write(line)
+
 
 def unixed():
-    with open('main.qss', 'r') as textfile:
-        test = textfile.readline()
-        if test == '/*UNIX*/\n':
-            return print('already in unix style')
-        elif test == '/*WIN*/\n':
-            lines = textfile.readlines()
-            pattern = '^.*/(.*.png).*'
-        else:
-            pattern = '^.*\((:.*.png).*'
-            lines = textfile.readlines()
-            lines.insert(0, test)
-    with open('main.qss', 'w') as textfile:
+    with open(str(os.path.dirname(os.path.abspath(__file__))) + '/main.src', 'r') as textfile:
+        lines = textfile.readlines()
+    with open(str(os.path.dirname(os.path.abspath(__file__))) + '/main.qss', 'w') as textfile:
         textfile.write('/*UNIX*/\n')
         for line in lines:
-            find = re.compile(pattern)
-            textfile.write(find.sub(r'    image: url(: \1);', line))
-
+            pattern1 = '^.*image:.*:(.*).png.*'
+            find1 = re.compile(pattern1)
+            pattern2 = '^.*border-image:.*:(.*).png.*'
+            find2 = re.compile(pattern2)
+            if find1.match(line):
+                textfile.write(find1.sub(r'    image: url({path}/\1.png);'.format(path=os.path.dirname(__file__)), line))
+            elif find2.match(line):
+                textfile.write(find2.sub(r'    border-image: url({path}/\1.png);'.format(path=os.path.dirname(__file__)), line))
+            else:
+                textfile.write(line)
