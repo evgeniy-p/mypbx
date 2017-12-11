@@ -3,15 +3,13 @@ import re
 
 
 def windowsed():
+    with open(str(os.path.dirname(os.path.abspath(__file__))) + '\\main.qss', 'r') as textfile:
+        line = textfile.readline()
+        if line == '/*WIN*/':
+            return
     with open(str(os.path.dirname(os.path.abspath(__file__))) + '\\main.src', 'r') as textfile:
-        test = textfile.readline()
-        if test == '/*WIN*/\n':
-            return print('already in windows style')
-        elif test == '/*UNIX*/\n':
-            lines = textfile.readlines()
-        else:
-            lines = textfile.readlines()
-            lines.insert(0, test)
+        lines = textfile.readlines()
+        lines.insert(0, test)
     with open(str(os.path.dirname(os.path.abspath(__file__))) + '\\main.qss', 'w') as textfile:
         textfile.write('/*WIN*/\n')
         for line in lines:
@@ -34,6 +32,10 @@ def windowsed():
 
 
 def unixed():
+    with open(str(os.path.dirname(os.path.abspath(__file__))) + '/main.qss', 'r') as textfile:
+        line = textfile.readline()
+        if line == '/*UNIX*/\n':
+            return
     with open(str(os.path.dirname(os.path.abspath(__file__))) + '/main.src', 'r') as textfile:
         lines = textfile.readlines()
     with open(str(os.path.dirname(os.path.abspath(__file__))) + '/main.qss', 'w') as textfile:

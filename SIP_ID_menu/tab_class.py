@@ -3,12 +3,12 @@ import language
 
 
 class Tab:
-    def __init__(self, LANG):
+    def __init__(self, LANG, index):
         self.tab_page = QtWidgets.QWidget()
         self.tab_page.setObjectName('tab_page')
         self.tab_checkBox = QtWidgets.QCheckBox(self.tab_page)
         self.tab_checkBox.setGeometry(QtCore.QRect(505, 20, 17, 21))
-        self.tab_checkBox.setObjectName('tab_checkBox')
+        self.tab_checkBox.setObjectName('tab_checkBox' + str(index))
         self.tab_pushButton = QtWidgets.QPushButton(self.tab_page)
         self.tab_pushButton.setGeometry(QtCore.QRect(language.ext_dict["mass_update_butt"][LANG[0]][0],
                                                      language.ext_dict["mass_update_butt"][LANG[0]][1],
