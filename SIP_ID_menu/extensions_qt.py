@@ -44,7 +44,7 @@ class QTExtension:
         if self.menuform.loginform.token:
             self.set_extensions()
             for index in self.tab_dict:
-                self.tab_dict[index].tab_checkBox.clicked.connect(lambda: self.get_index_checkbox(index))
+                self.tab_dict[index].tab_checkBox.clicked.connect(lambda: self.set_unset_checkbox(index))
         else:
             self.go_demo()
         self.ext_menu_window.setWindowTitle(language.ext_dict["ext_menu_window"][self.LANG[0]])
@@ -69,11 +69,9 @@ class QTExtension:
             except IndexError:
                 return
             # создаем инстанс вкладки - 'tab'
-            self.tab_dict[index] = tab_class.Tab(self.LANG, index)
+            self.tab_dict[index] = tab_class.Tab(self, index)
             # получаем все id добавочных, обративщись к функции, которая заполняет добавочными 'tab'
             self.fill_tab_ext(index)
-            # теперь устанавливаем подменю в кнопку вкладки
-            self.tab_dict[index].setup_submenu(self.LANG, index, self.menus)
             # добавляем вкладку на виджет
             self.tabWidget.addTab(self.tab_dict[index].tab_page, str(index))
             index += 1
@@ -81,9 +79,8 @@ class QTExtension:
     def go_demo(self):
         self.tabWidget.clear()
         for tub_numb in self.tubs_nums:
-            self.tab_dict[tub_numb] = tab_class.Tab(self.LANG, tub_numb)
+            self.tab_dict[tub_numb] = tab_class.Tab(self, tub_numb)
             self.fill_tab_ext(tub_numb)
-            self.tab_dict[tub_numb].setup_submenu(self.LANG, tub_numb, self.menus)
             self.tabWidget.addTab(self.tab_dict[tub_numb].tab_page, str(tub_numb))
             self.tab_dict[tub_numb].tab_checkBox.clicked.connect(lambda: print(self.tab_dict[tub_numb].tab_checkBox.
                                                                                sender().objectName()))
@@ -95,21 +92,31 @@ class QTExtension:
         csp = 80
         for ext_dict in self.exten_list:
             # Пополняем словарь id_dict постранично (страница = index)
-            append = {ext_dict['id']: [ext_line.Extline(self.LANG, self.tab_dict[index].tab_page, ext_dict,
-                                                        wsp, csp, self.menus), ext_dict['name']]}
+            append = {ext_dict['id']: [ext_line.Extline(self, self.tab_dict[index].tab_page, ext_dict, wsp,
+                                                        csp), ext_dict['name']]}
             self.id_dict[index].update(append)
             wsp += 40
             csp += 40
 
-    def get_index_checkbox(self, page):
+    def set_unset_checkbox(self, page):
         index = int(self.tab_dict[page].tab_checkBox.sender().objectName()[-1:])
         if self.tab_dict[index].tab_checkBox.isChecked():
-            checked_line = list()
             for ext in self.id_dict[index]:
                 self.id_dict[index][ext][0].ext_checkBox2.setChecked(True)
         else:
             for ext in self.id_dict[index]:
                 self.id_dict[index][ext][0].ext_checkBox2.setChecked(False)
+
+    def print_tmst(self, index):
+        print(index)
+
+    def get_checked_on_this_page(self, index):
+        checked_list = list()
+        for ext in self.id_dict[index]:
+            if self.id_dict[index][ext][0].ext_checkBox2.isChecked():
+                checked_list.append(ext)
+
+        print(checked_list)
 
     def print_all_ids(self):
         print(self.id_dict)
