@@ -1,11 +1,14 @@
 import requests
 import json
+import myexception
 
 
 class Client:
     def __init__(self, classwithtoken):
         answer = requests.get('https://apiproxy.telphin.ru/api/ver1.0/user/',
                               headers=classwithtoken.take_auth_header())
+        if answer.status_code == 429:
+            raise myexception.rate_limit_exceeded
         answer = json.loads(answer.content.decode('ascii'))
         self.user_info = answer
         self.client_id = answer["client_id"]

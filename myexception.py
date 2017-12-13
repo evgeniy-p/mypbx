@@ -6,3 +6,6 @@ class cant_get_OK_need_recconect(Exception):
 
 class extension_name_must_be_set(Exception):
     pass
+
+class rate_limit_exceeded(Exception):
+    pass

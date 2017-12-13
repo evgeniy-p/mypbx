@@ -85,6 +85,7 @@ ext_form.pushButton.clicked.connect(lambda: ext_form.print_hello_world('test'))
 ext_form.pushButton_2.clicked.connect(lambda: ext_form.print_hello_world('test'))
 ext_form.pushButton_3.clicked.connect(ext_form.setupUi)
 ext_form.pushButton_4.clicked.connect(lambda: ext_form.print_hello_world('find chekboxed SIP_ID_menu'))
+ext_form.pushButton_5.clicked.connect(ext_form.print_all_ids)
 """
 Выход
 """
