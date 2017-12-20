@@ -7,7 +7,8 @@ from PyQt5.QtWidgets import QApplication
 
 import login
 import menu
-from SIP_ID_menu import extensions_qt
+from SIP_ID_menu import extensions_qt_test
+
 
 if os.name == 'nt':
     path.windowsed()
@@ -48,7 +49,7 @@ login_form.start_main_menu = menu_form.menu_window
 """
 Инициализация формы добавочных
 """
-ext_form = extensions_qt.QTExtension(menu_form)
+ext_form = extensions_qt_test.QTExtension(menu_form)
 menu_form.start_ext_menu = ext_form.ext_menu_window
 
 """
@@ -84,7 +85,7 @@ menu_form.pushButton_9.clicked.connect(menu_form.dialrul_but_clicked)
 ext_form.pushButton.clicked.connect(lambda: ext_form.print_hello_world('test'))
 ext_form.pushButton_2.clicked.connect(lambda: ext_form.print_hello_world('test'))
 ext_form.pushButton_3.clicked.connect(ext_form.setupUi)
-ext_form.pushButton_4.clicked.connect(lambda: ext_form.print_hello_world('find chekboxed SIP_ID_menu'))
+ext_form.pushButton_4.clicked.connect(ext_form.get_all_checked)
 ext_form.pushButton_5.clicked.connect(ext_form.print_all_ids)
 """
 Выход

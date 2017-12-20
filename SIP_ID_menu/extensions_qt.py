@@ -14,8 +14,8 @@ class QTExtension:
         self.ext_menu_window.setFixedWidth(607)
         self.ext_menu_window.setFixedHeight(650)
         self.tubs_nums = [1]
-        self.exten_list = [{'id': 28, 'name': 'test*123', 'label': 'test'},
-                           {'id': 36, 'name': 'test*234', 'label': 'test2'}]
+        self.exten_list = [{'id': 28, 'name': 'test*123', 'label': 'test', 'name': 'test*123', 'domain': 'test.ru'},
+                           {'id': 36, 'name': 'test*234', 'label': 'test2', 'name': 'test*234', 'domain': 'test.ru'}]
         self.id_dict = {1: {28: 'test*123', 36: 'test*234'}}
         self.ext_menu_window.setObjectName("self.ext_menu_window")
         self.ext_menu_window.resize(607, 600)
@@ -82,8 +82,7 @@ class QTExtension:
             self.tab_dict[tub_numb] = tab_class.Tab(self, tub_numb)
             self.fill_tab_ext(tub_numb)
             self.tabWidget.addTab(self.tab_dict[tub_numb].tab_page, str(tub_numb))
-            self.tab_dict[tub_numb].tab_checkBox.clicked.connect(lambda: print(self.tab_dict[tub_numb].tab_checkBox.
-                                                                               sender().objectName()))
+            self.tab_dict[tub_numb].tab_checkBox.clicked.connect(lambda: self.set_unset_checkbox(tub_numb))
 
     def fill_tab_ext(self, index):
         # Стартовая позиция виджета на каждой линии
@@ -107,15 +106,19 @@ class QTExtension:
             for ext in self.id_dict[index]:
                 self.id_dict[index][ext][0].ext_checkBox2.setChecked(False)
 
-    def print_tmst(self, index):
-        print(index)
+    def get_all_checked(self, index):
+        checked_list = list()
+        for tab in self.id_dict:
+            for ext in self.id_dict[tab]:
+                if self.id_dict[tab][ext][0].ext_checkBox2.isChecked():
+                    checked_list.append(ext)
+        print(checked_list)
 
     def get_checked_on_this_page(self, index):
         checked_list = list()
         for ext in self.id_dict[index]:
             if self.id_dict[index][ext][0].ext_checkBox2.isChecked():
                 checked_list.append(ext)
-
         print(checked_list)
 
     def print_all_ids(self):

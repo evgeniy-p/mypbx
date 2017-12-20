@@ -53,6 +53,12 @@ ext_dict = {
     "delete": ["Delete", "Удалить"],
     "refresh_but": ["Refresh", "Обновить"],
     "all_this_page": ["Update SELECTED on ALL page", "Обновить ВООБЩЕ ВСЕ ВЫДЕЛЕННЫЕ"],
-    "all_all_page": ["Update ALL on ALL pages", "Обновить ВООБЩЕ ВСЕ"]
+    "all_all_page": ["Update ALL on ALL pages", "Обновить ВООБЩЕ ВСЕ"],
+    "domain": ["Domain\\registrar server: ", "Домен\\сервер регистрации: "],
+    "login": ['SIP ID: ', 'SIP ID: '],
+    "info_sip_id_start": ['To configure the equipment, use the following data:',
+                          'Для настройки оборудования используйте следующие данные:'],
+    "info_sip_id_end": ['You can set the password in: \n Edit SIP ID -> Change SIP ID password',
+                        'Задать пароль вы можете в: \n Редактировать -> Изменить пароль этого SIP ID']
 }
 

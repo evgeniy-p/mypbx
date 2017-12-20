@@ -14,10 +14,15 @@ class Extline:
         self.ext_label = QtWidgets.QLabel(self.ext_horizontalLayoutWidget)
         self.ext_label.setObjectName('ext_label')
         self.ext_label.setText(ext_dict['name'])
+        self.ext_label.setToolTip(language.ext_dict["info_sip_id_start"][self.older_menu.LANG[0]] + '\n\n' +
+                                  language.ext_dict["login"][self.older_menu.LANG[0]] + ext_dict['name'] + '\n' +
+                                  language.ext_dict["domain"][self.older_menu.LANG[0]] + ext_dict['domain'] + '\n\n' +
+                                  language.ext_dict["info_sip_id_end"][self.older_menu.LANG[0]])
         self.ext_horizontalLayout.addWidget(self.ext_label)
         self.ext_label_2 = QtWidgets.QLabel(self.ext_horizontalLayoutWidget)
         self.ext_label_2.setObjectName('ext_label_2')
-        self.ext_label_2.setText(ext_dict['label'])
+        self.ext_label_2.setText(self.make_normal_label(ext_dict['label']))
+        self.ext_label_2.setToolTip(ext_dict['label'])
         self.ext_horizontalLayout.addWidget(self.ext_label_2)
         self.ext_menu_button = QtWidgets.QMenu()
         self.ext_pushButton_5 = QtWidgets.QPushButton(self.ext_horizontalLayoutWidget)
@@ -40,3 +45,9 @@ class Extline:
             self.tr_action = self.ext_menu_button.addAction(language.ext_dict[submenu][self.older_menu.LANG[0]])
             self.tr_action.triggered.connect(lambda: self.older_menu.print_tmst(ext_id))
             self.ext_menu_button.addSeparator()
+
+    def make_normal_label(self, name):
+        if name:
+            if len(name) > 16:
+                name = name[:16] + '...'
+        return name
