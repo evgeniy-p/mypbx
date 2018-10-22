@@ -17,7 +17,6 @@ class LoginForm(gettoken.Token):
         self.setupUi(self.start_window)
         self.start_main_menu = None
 
-
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)

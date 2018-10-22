@@ -86,26 +86,26 @@ class MenuForm:
         self.pushButton_9.setText(_translate("MainWindow", language.menu_dict["DialRul"][self.LANG[0]]))
         self.pushButton_10.setText(_translate("MainWindow", language.menu_dict["Settings"][self.LANG[0]]))
         self.label1.setText(_translate("MainWindow", language.menu_dict["Hello"][self.LANG[0]]))
-        self.passwd = self.setting_menu.addAction(language.menu_dict["passwd"][self.LANG[0]])
+        passwd = self.setting_menu.addAction(language.menu_dict["passwd"][self.LANG[0]])
         self.setting_menu.addSeparator()
-        self.email = self.setting_menu.addAction(language.menu_dict["email"][self.LANG[0]])
+        email = self.setting_menu.addAction(language.menu_dict["email"][self.LANG[0]])
         self.setting_menu.addSeparator()
-        self.timeZ = self.setting_menu.addAction(language.menu_dict["timeZ"][self.LANG[0]])
+        timeZ = self.setting_menu.addAction(language.menu_dict["timeZ"][self.LANG[0]])
         self.setting_menu.addSeparator()
-        self.notif = self.setting_menu.addAction(language.menu_dict["notif"][self.LANG[0]])
+        notif = self.setting_menu.addAction(language.menu_dict["notif"][self.LANG[0]])
         self.setting_menu.addSeparator()
-        self.wbl = self.setting_menu.addAction(language.menu_dict["white and black list"][self.LANG[0]])
+        wbl = self.setting_menu.addAction(language.menu_dict["white and black list"][self.LANG[0]])
         self.setting_menu.addSeparator()
-        self.sounds = self.setting_menu.addAction(language.menu_dict["sounds"][self.LANG[0]])
+        sounds = self.setting_menu.addAction(language.menu_dict["sounds"][self.LANG[0]])
         """
         В выпадающем списке дергаются необходимые кнопки
         """
-        self.passwd.triggered.connect(self.passwd_but_clicked)
-        self.email.triggered.connect(self.email_but_clicked)
-        self.timeZ.triggered.connect(self.timeZ_but_clicked)
-        self.notif.triggered.connect(self.notif_but_clicked)
-        self.wbl.triggered.connect(self.wbl_but_clicked)
-        self.sounds.triggered.connect(self.sounds_but_clicked)
+        passwd.triggered.connect(self.passwd_but_clicked)
+        email.triggered.connect(self.email_but_clicked)
+        timeZ.triggered.connect(self.timeZ_but_clicked)
+        notif.triggered.connect(self.notif_but_clicked)
+        wbl.triggered.connect(self.wbl_but_clicked)
+        sounds.triggered.connect(self.sounds_but_clicked)
         """
         """
         if self.loginform.token:

@@ -2,7 +2,6 @@ import requests
 import json
 import myexception
 
-host = 'https://apiproxy.telphin.ru/api/ver1.0'
 
 class Exten:
     def __init__(self, menuform):
@@ -24,8 +23,9 @@ class Exten:
 
     def get_all_extensions(self, **kwargs):
         payload = kwargs
-        answ= requests.get(host+'/client/{client_id}/extension/'.format(client_id=self.menuform.clientinfo.clientinfo['id']),
-                            headers=self.menuform.loginform.take_auth_header(), params=payload)
+        answ= requests.get('https://{apihost}/api/ver1.0/client/{client_id}/extension/'.format(
+            apihost=self.menuform.loginform.api_host, client_id=self.menuform.clientinfo.client_id),
+            headers=self.menuform.loginform.take_auth_header(), params=payload)
         return json.loads(answ.content.decode('ascii'))
 
     def add_extension(self, name=None):
@@ -33,8 +33,9 @@ class Exten:
             raise myexception.extension_name_must_be_set
         else:
             self.extbody['name'] = name
-        answer = requests.post('https://apiproxy.telphin.ru/api/ver1.0/client/{client_id}/extension/',
-                               headers=self.menuform.loginform.take_auth_header(), data=self.extbody)
+        answer = requests.post('https://{apihost}/api/ver1.0/client/{client_id}/extension/'.format(
+            apihost=self.menuform.loginform.api_host,), headers=self.menuform.loginform.take_auth_header(),
+            data=self.extbody)
         return json.loads(answer.content.decode('ascii'))
 
     def del_extension(self):
@@ -62,8 +63,8 @@ class Exten:
         pass
 
     def get_registrations(self):
-        answer = requests.get('https://apiproxy.telphin.ru/api/ver1.0/extension/registration',
-                               headers=self.menuform.loginform.take_auth_header())
+        answer = requests.get('https://{apihost}/api/ver1.0/extension/registration'.format(
+            apihost=self.menuform.loginform.api_host,), headers=self.menuform.loginform.take_auth_header())
         return answer
 
 

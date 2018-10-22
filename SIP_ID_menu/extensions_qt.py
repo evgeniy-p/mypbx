@@ -106,7 +106,7 @@ class QTExtension:
             for ext in self.id_dict[index]:
                 self.id_dict[index][ext][0].ext_checkBox2.setChecked(False)
 
-    def get_all_checked(self, index):
+    def get_all_checked(self):
         checked_list = list()
         for tab in self.id_dict:
             for ext in self.id_dict[tab]:
@@ -123,5 +123,11 @@ class QTExtension:
 
     def print_all_ids(self):
         print(self.id_dict)
+
+    def print_hello_world(self, word):
+        print(word)
+
+    def print_tmst(self, ext_id):
+        print(ext_id)
 
 
