@@ -36,7 +36,7 @@ class Token:
             answer = req.post('https://{apihost}/oauth/authorize'.format(apihost=self.api_host), params=postbody,
                               allow_redirects=False)
             answer = req.post(answer.headers['Location'], data=payload, allow_redirects=False)
-            answer = req.get(answer.headers['Location'], cookies=req.cookies, allow_redirects=False)
+            answer = req.get(answer.headers['Location'], allow_redirects=False)
         try:
             payload = {'grant_type': 'authorization_code', 'code': answer.headers['Location'].split('=')[1],
                        'client_id': self.apID, 'client_secret': self.apSecret, 'redirect_uri': self.redirect_uri}
